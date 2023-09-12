@@ -43,7 +43,7 @@ function App() {
         </div>
       </div>
       <div className="min-h-[50px] bg-blue-400 flex-none relative">
-        {isCli && <CliBox></CliBox>}
+        {isCli && <CliBox value={inputValue}></CliBox>}
         <input
           value={inputValue}
           onChange={handleInputChange}
