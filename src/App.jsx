@@ -6,12 +6,14 @@ import {actionType} from './helper/action-type'
 import ActionModal from "./components/ActionModal";
 
 function App() {
+
   const [msgList, setMsgList] = useState([]);
-  const [inputValue, setInputValue] = useState("");
-  const scrollRef = useRef(null);
-  const commandBoxRef = useRef(null)
+  
+  
+  // input 事件处理
   const [isCmd,setIsCmd] = useState(false)
-  const [isOpen,setIsOpen] = useState(false)
+  const commandBoxRef = useRef(null)
+  const [inputValue, setInputValue] = useState("");
 
   const handleKeyEnter = ()=>{
     if(isCmd) return commandBoxRef.current.enter()
@@ -29,7 +31,7 @@ function App() {
     setInputValue(value)
   }
 
-  const onClose = ()=>{
+  const onCommandClose = ()=>{
     setIsCmd(false)
   }
 
@@ -54,8 +56,34 @@ function App() {
     }
   };
 
-  
 
+
+  // 指令处理
+  const [isOpen,setIsOpen] = useState(false)
+  const [modalState,setModalState] = useState({})
+  const inputRef = useRef()
+
+  const onOpenChange = val =>{
+    setIsOpen(val)
+    !val && inputRef.current.focus()
+  }
+
+  const commamdDispatch = action =>{
+    console.log({action});
+    setModalState({
+      ...action,
+      title:'设置用户名'
+    })
+    setIsOpen(true)
+  }
+
+  const actionConfirm = val =>{
+    console.log({val});
+  }
+
+  
+  // 消息监听滚动
+  const scrollRef = useRef(null);
   useEffect(() => {
     scrollRef.current.scrollTo({
       top: scrollRef.current.scrollHeight,
@@ -63,10 +91,7 @@ function App() {
     });
   }, [msgList]);
 
-  const commamdDispatch = action =>{
-    console.log({action});
-    setIsOpen(true)
-  }
+
   return (
     <div className="h-screen bg-gray-200">
       <div className="h-[50px] text-center bg-white flex flex-row items-center justify-center">
@@ -80,14 +105,20 @@ function App() {
         </div>
         {
           isCmd && <CommandContext.Provider value={commamdDispatch}>
-            <CommandBox ref={commandBoxRef} onClose={onClose} value={inputValue}></CommandBox>
+            <CommandBox ref={commandBoxRef} onClose={onCommandClose} value={inputValue}></CommandBox>
           </CommandContext.Provider >
         }
-        <ActionModal isOpen={isOpen} onOpenChange={setIsOpen}></ActionModal>
+        <ActionModal 
+          modalState={modalState}
+          isOpen={isOpen} 
+          onOpenChange={onOpenChange}
+          onConfirm={actionConfirm}
+        ></ActionModal>
       </div>
       <div className="h-[50px] bg-blue-400 flex-none ">
         <input
           autoFocus
+          ref={inputRef}
           value={inputValue}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}

@@ -1,11 +1,31 @@
-import { Modal,ModalContent,ModalHeader,ModalBody,ModalFooter,Button} from "@nextui-org/react";
+import { Modal,ModalContent,ModalHeader,ModalBody,ModalFooter,Button,Input} from "@nextui-org/react";
+import { useEffect, useRef, useState } from "react";
 
 
 
 
-export default function ActionModal({isOpen,onOpenChange}){
+export default function ActionModal({
+        isOpen,
+        onOpenChange,
+        modalState,
+        onConfirm,
+    }){
+    const inputRef = useRef()
+    const [inputValue,setInputValue] = useState('')
 
+    useEffect(()=>{
+        isOpen && inputRef.current.focus()
+    },[isOpen])
 
+    const handleConfirm = ()=>{
+        onConfirm(inputValue)
+        onOpenChange(false)
+    }
+
+    const handleKeyDown = e =>{
+        if(e.key !== 'Enter') return
+        handleConfirm()
+    }
 
     return (
         <Modal 
@@ -16,34 +36,18 @@ export default function ActionModal({isOpen,onOpenChange}){
             <ModalContent> 
                 {(onClose) => (
                     <>
-                    {/* <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader> */}
-                    <ModalBody>
-                        <p> 
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Nullam pulvinar risus non risus hendrerit venenatis.
-                        Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                        </p>
-                        <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Nullam pulvinar risus non risus hendrerit venenatis.
-                        Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                        </p>
-                        <p>
-                        Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit
-                        dolor adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis. 
-                        Velit duis sit officia eiusmod Lorem aliqua enim laboris do dolor eiusmod. 
-                        Et mollit incididunt nisi consectetur esse laborum eiusmod pariatur 
-                        proident Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
-                        </p>
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button color="danger" variant="light" onPress={onClose}>
-                        Close
-                        </Button>
-                        <Button color="primary" onPress={onClose}>
-                        Action
-                        </Button>
-                    </ModalFooter>
+                        <ModalHeader className="justify-center">{modalState.title}</ModalHeader>
+                        <ModalBody>
+                            <Input value={inputValue} onKeyDown={handleKeyDown} onChange={e=>setInputValue(e.target.value)} ref={inputRef} type={modalState.inputType || 'text'} />
+                        </ModalBody>
+                        <ModalFooter className="justify-around">
+                            <Button color="danger" variant="light" onPress={onClose}>
+                                取消
+                            </Button>
+                            <Button color="primary" onPress={handleConfirm}>
+                                确认
+                            </Button>
+                        </ModalFooter>
                     </>
                 )}
             </ModalContent>
