@@ -1,15 +1,45 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState,useContext } from "react";
 import Message from "./components/Message";
 import CommandBox from './components/CommandBox'
 import {CommandContext} from './helper/context'
 import {actionType} from './helper/action-type'
 import SettingUserName from "./components/SettingUserName";
 import EmojiModal from "./components/EmojiModal";
+import {GlobalContext} from './contexts/global'
+
+const components = {
+  [actionType.SETTING_USER_NAME]:<SettingUserName></SettingUserName>
+}
+
+async function getTheFile() {
+  const pickerOpts = {
+    types: [
+      {
+        description: "Images",
+        accept: {
+          "image/*": [".png", ".gif", ".jpeg", ".jpg"],
+        },
+      },
+    ],
+    excludeAcceptAllOption: true,
+    multiple: false,
+  };
+
+  // 打开文件选择器
+  const [fileHandle] = await window.showOpenFilePicker(pickerOpts);
+  // 获取文件内容
+  const fileData = await fileHandle.getFile();
+  console.log({fileData});
+  console.log('arrayBuffer',await fileData.arrayBuffer());
+  return fileData;
+}
+
 
 function App() {
 
   const [msgList, setMsgList] = useState([]);
-  
+  const [state,dispatch] = useContext(GlobalContext)
+  console.log({state});
   
   // input 事件处理
   const [isCmd,setIsCmd] = useState(false)
@@ -77,19 +107,14 @@ function App() {
 
   // 指令处理
   const commamdDispatch = action =>{
-    switch(action.action){
-      case actionType.SETTING_NAME:
-        setModalState({
-          ...action,
-          title:'设置用户名'
-        })
-        setIsActionOpen(true)
-        break;
-      case actionType.SEND_EMOJI:
-        setIsEmojiOpen(true)
-        break;
+    if(action.action === actionType.SETTING_HEAD){
+      return getTheFile()
     }
     console.log({action});
+    dispatch({
+      type:'setAction',
+      value:action.action,
+    })
   }
 
 
@@ -127,13 +152,14 @@ function App() {
             <CommandBox ref={commandBoxRef} onClose={onCommandClose} value={inputValue}></CommandBox>
           </CommandContext.Provider >
         }
-        <SettingUserName></SettingUserName>
+        {/* <SettingUserName></SettingUserName>
         {
           isEmojiOpen && <EmojiModal
               onClose={()=>setIsEmojiOpen(false)}
               onConfirm={emojiConfirm}
             ></EmojiModal>
-        }
+        } */}
+        {components[state.action]}
       </div>
       <div className="h-[50px] bg-blue-400 flex-none ">
         <input

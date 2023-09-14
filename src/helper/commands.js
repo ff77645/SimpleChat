@@ -12,7 +12,7 @@ export const commands = [
         keywords:'setting 设置 user name nikename 名字 昵称',
         rep:'设置: 用户昵称',
         rep_en:'setting: user nikename',
-        action:actionType.SETTING_NAME,
+        action:actionType.SETTING_USER_NAME,
     },
 
     // 发送表情
