@@ -16,12 +16,12 @@ export const commands = [
     },
 
     // 发送表情
-    {
-        keywords:'send 发送 emoji 表情',
-        rep:'发送: 表情',
-        rep_en:'send: emoji',
-        action:actionType.SEND_EMOJI,
-    },
+    // {
+    //     keywords:'send 发送 emoji 表情',
+    //     rep:'发送: 表情',
+    //     rep_en:'send: emoji',
+    //     action:actionType.SEND_EMOJI,
+    // },
     {
         keywords:'send 发送 emoji 表情 favorite 收藏',
         rep:'发送: 收藏表情',

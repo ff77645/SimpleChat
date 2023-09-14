@@ -3,7 +3,8 @@ import Message from "./components/Message";
 import CommandBox from './components/CommandBox'
 import {CommandContext} from './helper/context'
 import {actionType} from './helper/action-type'
-import ActionModal from "./components/ActionModal";
+import SettingUserName from "./components/SettingUserName";
+import EmojiModal from "./components/EmojiModal";
 
 function App() {
 
@@ -57,29 +58,41 @@ function App() {
   };
 
 
-
-  // 指令处理
-  const [isOpen,setIsOpen] = useState(false)
+  // Modal 管理
+  const [isActionOpen,setIsActionOpen] = useState(false)
   const [modalState,setModalState] = useState({})
+  const [isEmojiOpen,setIsEmojiOpen] = useState(false)
   const inputRef = useRef()
 
-  const onOpenChange = val =>{
-    setIsOpen(val)
-    !val && inputRef.current.focus()
-  }
-
-  const commamdDispatch = action =>{
-    console.log({action});
-    setModalState({
-      ...action,
-      title:'设置用户名'
-    })
-    setIsOpen(true)
+  const emojiConfirm = val =>{
+    setInputValue(value=>value + val)
+    inputRef.current.focus()
   }
 
   const actionConfirm = val =>{
     console.log({val});
+    inputRef.current.focus()
   }
+
+
+  // 指令处理
+  const commamdDispatch = action =>{
+    switch(action.action){
+      case actionType.SETTING_NAME:
+        setModalState({
+          ...action,
+          title:'设置用户名'
+        })
+        setIsActionOpen(true)
+        break;
+      case actionType.SEND_EMOJI:
+        setIsEmojiOpen(true)
+        break;
+    }
+    console.log({action});
+  }
+
+
 
   
   // 消息监听滚动
@@ -90,14 +103,20 @@ function App() {
       behavior: "smooth",
     });
   }, [msgList]);
-
+  const scrollWrap = useRef()
 
   return (
     <div className="h-screen bg-gray-200">
       <div className="h-[50px] text-center bg-white flex flex-row items-center justify-center">
-        <h2 className="text-xl font-[500]">header</h2>
+        <h2 
+          // suppressContentEditableWarning
+          // contentEditable={true} 
+          className="text-xl font-[500]"
+        >
+          header
+        </h2>
       </div>
-      <div className="relative" style={{height:'calc(100vh - 100px)'}}>
+      <div ref={scrollWrap} className="relative" style={{height:'calc(100vh - 100px)'}}>
         <div ref={scrollRef} className="overflow-y-auto h-full">
             {msgList.map((data, index) => (
               <Message data={data} align="left" key={index}></Message>
@@ -108,12 +127,13 @@ function App() {
             <CommandBox ref={commandBoxRef} onClose={onCommandClose} value={inputValue}></CommandBox>
           </CommandContext.Provider >
         }
-        <ActionModal 
-          modalState={modalState}
-          isOpen={isOpen} 
-          onOpenChange={onOpenChange}
-          onConfirm={actionConfirm}
-        ></ActionModal>
+        <SettingUserName></SettingUserName>
+        {
+          isEmojiOpen && <EmojiModal
+              onClose={()=>setIsEmojiOpen(false)}
+              onConfirm={emojiConfirm}
+            ></EmojiModal>
+        }
       </div>
       <div className="h-[50px] bg-blue-400 flex-none ">
         <input

@@ -1,0 +1,1505 @@
+[
+	{
+		"group_name": "笑脸表情",
+		"data": [
+			{
+				"emoji": "😀",
+				"name": "嘿嘿",
+				"name_en": "grinning face",
+				"unicode": [
+					55357,
+					56832
+				]
+			},
+			{
+				"emoji": "😃",
+				"name": "哈哈",
+				"name_en": "grinning face with big eyes",
+				"unicode": [
+					55357,
+					56835
+				]
+			},
+			{
+				"emoji": "😄",
+				"name": "大笑",
+				"name_en": "grinning face with smiling eyes",
+				"unicode": [
+					55357,
+					56836
+				]
+			},
+			{
+				"emoji": "😁",
+				"name": "嘻嘻",
+				"name_en": "beaming face with smiling eyes",
+				"unicode": [
+					55357,
+					56833
+				]
+			},
+			{
+				"emoji": "😆",
+				"name": "斜眼笑",
+				"name_en": "grinning squinting face",
+				"unicode": [
+					55357,
+					56838
+				]
+			},
+			{
+				"emoji": "😅",
+				"name": "苦笑",
+				"name_en": "grinning face with sweat",
+				"unicode": [
+					55357,
+					56837
+				]
+			},
+			{
+				"emoji": "🤣",
+				"name": "笑得满地打滚",
+				"name_en": "rolling on the floor laughing",
+				"unicode": [
+					55358,
+					56611
+				]
+			},
+			{
+				"emoji": "😂",
+				"name": "笑哭了",
+				"name_en": "face with tears of joy",
+				"unicode": [
+					55357,
+					56834
+				]
+			},
+			{
+				"emoji": "🙂",
+				"name": "呵呵",
+				"name_en": "slightly smiling face",
+				"unicode": [
+					55357,
+					56898
+				]
+			},
+			{
+				"emoji": "🙃",
+				"name": "倒脸",
+				"name_en": "upside-down face",
+				"unicode": [
+					55357,
+					56899
+				]
+			},
+			{
+				"emoji": "😉",
+				"name": "眨眼",
+				"name_en": "winking face",
+				"unicode": [
+					55357,
+					56841
+				]
+			},
+			{
+				"emoji": "😊",
+				"name": "羞涩微笑",
+				"name_en": "smiling face with smiling eyes",
+				"unicode": [
+					55357,
+					56842
+				]
+			},
+			{
+				"emoji": "😇",
+				"name": "微笑天使",
+				"name_en": "smiling face with halo",
+				"unicode": [
+					55357,
+					56839
+				]
+			}
+		]
+	},
+	{
+		"group_name": "爱慕表情",
+		"data": [
+			{
+				"emoji": "🥰",
+				"name": "喜笑颜开",
+				"name_en": "smiling face with hearts",
+				"unicode": [
+					55358,
+					56688
+				]
+			},
+			{
+				"emoji": "😍",
+				"name": "花痴",
+				"name_en": "smiling face with heart-eyes",
+				"unicode": [
+					55357,
+					56845
+				]
+			},
+			{
+				"emoji": "🤩",
+				"name": "好崇拜哦",
+				"name_en": "star-struck",
+				"unicode": [
+					55358,
+					56617
+				]
+			},
+			{
+				"emoji": "😘",
+				"name": "飞吻",
+				"name_en": "face blowing a kiss",
+				"unicode": [
+					55357,
+					56856
+				]
+			},
+			{
+				"emoji": "😗",
+				"name": "亲亲",
+				"name_en": "kissing face",
+				"unicode": [
+					55357,
+					56855
+				]
+			},
+			{
+				"emoji": "☺️",
+				"name": "微笑",
+				"name_en": "smiling face",
+				"unicode": [
+					9786,
+					65039
+				]
+			},
+			{
+				"emoji": "😚",
+				"name": "羞涩亲亲",
+				"name_en": "kissing face with closed eyes",
+				"unicode": [
+					55357,
+					56858
+				]
+			},
+			{
+				"emoji": "😙",
+				"name": "微笑亲亲",
+				"name_en": "kissing face with smiling eyes",
+				"unicode": [
+					55357,
+					56857
+				]
+			},
+			{
+				"emoji": "🥲",
+				"name": "含泪的笑脸",
+				"name_en": "smiling face with tear",
+				"unicode": [
+					55358,
+					56690
+				]
+			}
+		]
+	},
+	{
+		"group_name": "吐舌表情",
+		"data": [
+			{
+				"emoji": "😋",
+				"name": "好吃",
+				"name_en": "face savoring food",
+				"unicode": [
+					55357,
+					56843
+				]
+			},
+			{
+				"emoji": "😛",
+				"name": "吐舌",
+				"name_en": "face with tongue",
+				"unicode": [
+					55357,
+					56859
+				]
+			},
+			{
+				"emoji": "😜",
+				"name": "单眼吐舌",
+				"name_en": "winking face with tongue",
+				"unicode": [
+					55357,
+					56860
+				]
+			},
+			{
+				"emoji": "🤪",
+				"name": "滑稽",
+				"name_en": "zany face",
+				"unicode": [
+					55358,
+					56618
+				]
+			},
+			{
+				"emoji": "😝",
+				"name": "眯眼吐舌",
+				"name_en": "squinting face with tongue",
+				"unicode": [
+					55357,
+					56861
+				]
+			},
+			{
+				"emoji": "🤑",
+				"name": "发财",
+				"name_en": "money-mouth face",
+				"unicode": [
+					55358,
+					56593
+				]
+			}
+		]
+	},
+	{
+		"group_name": "手+脸",
+		"data": [
+			{
+				"emoji": "🤗",
+				"name": "抱抱",
+				"name_en": "smiling face with open hands",
+				"unicode": [
+					55358,
+					56599
+				]
+			},
+			{
+				"emoji": "🤭",
+				"name": "不说",
+				"name_en": "face with hand over mouth",
+				"unicode": [
+					55358,
+					56621
+				]
+			},
+			{
+				"emoji": "🤫",
+				"name": "安静的脸",
+				"name_en": "shushing face",
+				"unicode": [
+					55358,
+					56619
+				]
+			},
+			{
+				"emoji": "🤔",
+				"name": "想一想",
+				"name_en": "thinking face",
+				"unicode": [
+					55358,
+					56596
+				]
+			}
+		]
+	},
+	{
+		"group_name": "中性或怀疑表情",
+		"data": [
+			{
+				"emoji": "🤐",
+				"name": "闭嘴",
+				"name_en": "zipper-mouth face",
+				"unicode": [
+					55358,
+					56592
+				]
+			},
+			{
+				"emoji": "🤨",
+				"name": "挑眉",
+				"name_en": "face with raised eyebrow",
+				"unicode": [
+					55358,
+					56616
+				]
+			},
+			{
+				"emoji": "😐",
+				"name": "冷漠",
+				"name_en": "neutral face",
+				"unicode": [
+					55357,
+					56848
+				]
+			},
+			{
+				"emoji": "😑",
+				"name": "无语",
+				"name_en": "expressionless face",
+				"unicode": [
+					55357,
+					56849
+				]
+			},
+			{
+				"emoji": "😶",
+				"name": "沉默",
+				"name_en": "face without mouth",
+				"unicode": [
+					55357,
+					56886
+				]
+			},
+			{
+				"emoji": "😏",
+				"name": "得意",
+				"name_en": "smirking face",
+				"unicode": [
+					55357,
+					56847
+				]
+			},
+			{
+				"emoji": "😒",
+				"name": "不高兴",
+				"name_en": "unamused face",
+				"unicode": [
+					55357,
+					56850
+				]
+			},
+			{
+				"emoji": "🙄",
+				"name": "翻白眼",
+				"name_en": "face with rolling eyes",
+				"unicode": [
+					55357,
+					56900
+				]
+			},
+			{
+				"emoji": "😬",
+				"name": "龇牙咧嘴",
+				"name_en": "grimacing face",
+				"unicode": [
+					55357,
+					56876
+				]
+			},
+			{
+				"emoji": "🤥",
+				"name": "说谎",
+				"name_en": "lying face",
+				"unicode": [
+					55358,
+					56613
+				]
+			},
+			{
+				"emoji": "😶‍🌫️",
+				"name": "迷茫",
+				"name_en": "face in clouds",
+				"unicode": [
+					55357,
+					56886,
+					8205,
+					55356,
+					57131,
+					65039
+				]
+			},
+			{
+				"emoji": "😮‍💨",
+				"name": "呼气",
+				"name_en": "face exhaling",
+				"unicode": [
+					55357,
+					56878,
+					8205,
+					55357,
+					56488
+				]
+			}
+		]
+	},
+	{
+		"group_name": "困倦表情",
+		"data": [
+			{
+				"emoji": "😌",
+				"name": "松了口气",
+				"name_en": "relieved face",
+				"unicode": [
+					55357,
+					56844
+				]
+			},
+			{
+				"emoji": "😔",
+				"name": "沉思",
+				"name_en": "pensive face",
+				"unicode": [
+					55357,
+					56852
+				]
+			},
+			{
+				"emoji": "😪",
+				"name": "困",
+				"name_en": "sleepy face",
+				"unicode": [
+					55357,
+					56874
+				]
+			},
+			{
+				"emoji": "🤤",
+				"name": "流口水",
+				"name_en": "drooling face",
+				"unicode": [
+					55358,
+					56612
+				]
+			},
+			{
+				"emoji": "😴",
+				"name": "睡着了",
+				"name_en": "sleeping face",
+				"unicode": [
+					55357,
+					56884
+				]
+			}
+		]
+	},
+	{
+		"group_name": "不适表情",
+		"data": [
+			{
+				"emoji": "😷",
+				"name": "感冒",
+				"name_en": "face with medical mask",
+				"unicode": [
+					55357,
+					56887
+				]
+			},
+			{
+				"emoji": "🤒",
+				"name": "发烧",
+				"name_en": "face with thermometer",
+				"unicode": [
+					55358,
+					56594
+				]
+			},
+			{
+				"emoji": "🤕",
+				"name": "受伤",
+				"name_en": "face with head-bandage",
+				"unicode": [
+					55358,
+					56597
+				]
+			},
+			{
+				"emoji": "🤢",
+				"name": "恶心",
+				"name_en": "nauseated face",
+				"unicode": [
+					55358,
+					56610
+				]
+			},
+			{
+				"emoji": "🤮",
+				"name": "呕吐",
+				"name_en": "face vomiting",
+				"unicode": [
+					55358,
+					56622
+				]
+			},
+			{
+				"emoji": "🤧",
+				"name": "打喷嚏",
+				"name_en": "sneezing face",
+				"unicode": [
+					55358,
+					56615
+				]
+			},
+			{
+				"emoji": "🥵",
+				"name": "脸发烧",
+				"name_en": "hot face",
+				"unicode": [
+					55358,
+					56693
+				]
+			},
+			{
+				"emoji": "🥶",
+				"name": "冷脸",
+				"name_en": "cold face",
+				"unicode": [
+					55358,
+					56694
+				]
+			},
+			{
+				"emoji": "🥴",
+				"name": "头昏眼花",
+				"name_en": "woozy face",
+				"unicode": [
+					55358,
+					56692
+				]
+			},
+			{
+				"emoji": "😵",
+				"name": "晕头转向",
+				"name_en": "face with crossed-out eyes",
+				"unicode": [
+					55357,
+					56885
+				]
+			},
+			{
+				"emoji": "🤯",
+				"name": "爆炸头",
+				"name_en": "exploding head",
+				"unicode": [
+					55358,
+					56623
+				]
+			},
+			{
+				"emoji": "😵‍💫",
+				"name": "晕",
+				"name_en": "face with spiral eyes",
+				"unicode": [
+					55357,
+					56885,
+					8205,
+					55357,
+					56491
+				]
+			}
+		]
+	},
+	{
+		"group_name": "戴帽表情",
+		"data": [
+			{
+				"emoji": "🤠",
+				"name": "牛仔帽脸",
+				"name_en": "cowboy hat face",
+				"unicode": [
+					55358,
+					56608
+				]
+			},
+			{
+				"emoji": "🥳",
+				"name": "聚会笑脸",
+				"name_en": "partying face",
+				"unicode": [
+					55358,
+					56691
+				]
+			},
+			{
+				"emoji": "🥸",
+				"name": "伪装的脸",
+				"name_en": "disguised face",
+				"unicode": [
+					55358,
+					56696
+				]
+			}
+		]
+	},
+	{
+		"group_name": "眼镜表情",
+		"data": [
+			{
+				"emoji": "😎",
+				"name": "墨镜笑脸",
+				"name_en": "smiling face with sunglasses",
+				"unicode": [
+					55357,
+					56846
+				]
+			},
+			{
+				"emoji": "🤓",
+				"name": "书呆子脸",
+				"name_en": "nerd face",
+				"unicode": [
+					55358,
+					56595
+				]
+			},
+			{
+				"emoji": "🧐",
+				"name": "带单片眼镜的脸",
+				"name_en": "face with monocle",
+				"unicode": [
+					55358,
+					56784
+				]
+			}
+		]
+	},
+	{
+		"group_name": "担心表情",
+		"data": [
+			{
+				"emoji": "😕",
+				"name": "困扰",
+				"name_en": "confused face",
+				"unicode": [
+					55357,
+					56853
+				]
+			},
+			{
+				"emoji": "😟",
+				"name": "担心",
+				"name_en": "worried face",
+				"unicode": [
+					55357,
+					56863
+				]
+			},
+			{
+				"emoji": "🙁",
+				"name": "微微不满",
+				"name_en": "slightly frowning face",
+				"unicode": [
+					55357,
+					56897
+				]
+			},
+			{
+				"emoji": "☹️",
+				"name": "不满",
+				"name_en": "frowning face",
+				"unicode": [
+					9785,
+					65039
+				]
+			},
+			{
+				"emoji": "😮",
+				"name": "吃惊",
+				"name_en": "face with open mouth",
+				"unicode": [
+					55357,
+					56878
+				]
+			},
+			{
+				"emoji": "😯",
+				"name": "缄默",
+				"name_en": "hushed face",
+				"unicode": [
+					55357,
+					56879
+				]
+			},
+			{
+				"emoji": "😲",
+				"name": "震惊",
+				"name_en": "astonished face",
+				"unicode": [
+					55357,
+					56882
+				]
+			},
+			{
+				"emoji": "😳",
+				"name": "脸红",
+				"name_en": "flushed face",
+				"unicode": [
+					55357,
+					56883
+				]
+			},
+			{
+				"emoji": "🥺",
+				"name": "恳求的脸",
+				"name_en": "pleading face",
+				"unicode": [
+					55358,
+					56698
+				]
+			},
+			{
+				"emoji": "😦",
+				"name": "啊",
+				"name_en": "frowning face with open mouth",
+				"unicode": [
+					55357,
+					56870
+				]
+			},
+			{
+				"emoji": "😧",
+				"name": "极度痛苦",
+				"name_en": "anguished face",
+				"unicode": [
+					55357,
+					56871
+				]
+			},
+			{
+				"emoji": "😨",
+				"name": "害怕",
+				"name_en": "fearful face",
+				"unicode": [
+					55357,
+					56872
+				]
+			},
+			{
+				"emoji": "😰",
+				"name": "冷汗",
+				"name_en": "anxious face with sweat",
+				"unicode": [
+					55357,
+					56880
+				]
+			},
+			{
+				"emoji": "😥",
+				"name": "失望但如释重负",
+				"name_en": "sad but relieved face",
+				"unicode": [
+					55357,
+					56869
+				]
+			},
+			{
+				"emoji": "😢",
+				"name": "哭",
+				"name_en": "crying face",
+				"unicode": [
+					55357,
+					56866
+				]
+			},
+			{
+				"emoji": "😭",
+				"name": "放声大哭",
+				"name_en": "loudly crying face",
+				"unicode": [
+					55357,
+					56877
+				]
+			},
+			{
+				"emoji": "😱",
+				"name": "吓死了",
+				"name_en": "face screaming in fear",
+				"unicode": [
+					55357,
+					56881
+				]
+			},
+			{
+				"emoji": "😖",
+				"name": "困惑",
+				"name_en": "confounded face",
+				"unicode": [
+					55357,
+					56854
+				]
+			},
+			{
+				"emoji": "😣",
+				"name": "痛苦",
+				"name_en": "persevering face",
+				"unicode": [
+					55357,
+					56867
+				]
+			},
+			{
+				"emoji": "😞",
+				"name": "失望",
+				"name_en": "disappointed face",
+				"unicode": [
+					55357,
+					56862
+				]
+			},
+			{
+				"emoji": "😓",
+				"name": "汗",
+				"name_en": "downcast face with sweat",
+				"unicode": [
+					55357,
+					56851
+				]
+			},
+			{
+				"emoji": "😩",
+				"name": "累死了",
+				"name_en": "weary face",
+				"unicode": [
+					55357,
+					56873
+				]
+			},
+			{
+				"emoji": "😫",
+				"name": "累",
+				"name_en": "tired face",
+				"unicode": [
+					55357,
+					56875
+				]
+			},
+			{
+				"emoji": "🥱",
+				"name": "打呵欠",
+				"name_en": "yawning face",
+				"unicode": [
+					55358,
+					56689
+				]
+			}
+		]
+	},
+	{
+		"group_name": "负面表情",
+		"data": [
+			{
+				"emoji": "😤",
+				"name": "傲慢",
+				"name_en": "face with steam from nose",
+				"unicode": [
+					55357,
+					56868
+				]
+			},
+			{
+				"emoji": "😡",
+				"name": "怒火中烧",
+				"name_en": "enraged face",
+				"unicode": [
+					55357,
+					56865
+				]
+			},
+			{
+				"emoji": "😠",
+				"name": "生气",
+				"name_en": "angry face",
+				"unicode": [
+					55357,
+					56864
+				]
+			},
+			{
+				"emoji": "🤬",
+				"name": "嘴上有符号的脸",
+				"name_en": "face with symbols on mouth",
+				"unicode": [
+					55358,
+					56620
+				]
+			},
+			{
+				"emoji": "😈",
+				"name": "恶魔微笑",
+				"name_en": "smiling face with horns",
+				"unicode": [
+					55357,
+					56840
+				]
+			},
+			{
+				"emoji": "👿",
+				"name": "生气的恶魔",
+				"name_en": "angry face with horns",
+				"unicode": [
+					55357,
+					56447
+				]
+			},
+			{
+				"emoji": "💀",
+				"name": "头骨",
+				"name_en": "skull",
+				"unicode": [
+					55357,
+					56448
+				]
+			},
+			{
+				"emoji": "☠️",
+				"name": "骷髅",
+				"name_en": "skull and crossbones",
+				"unicode": [
+					9760,
+					65039
+				]
+			}
+		]
+	},
+	{
+		"group_name": "搞怪表情",
+		"data": [
+			{
+				"emoji": "💩",
+				"name": "大便",
+				"name_en": "pile of poo",
+				"unicode": [
+					55357,
+					56489
+				]
+			},
+			{
+				"emoji": "🤡",
+				"name": "小丑脸",
+				"name_en": "clown face",
+				"unicode": [
+					55358,
+					56609
+				]
+			},
+			{
+				"emoji": "👹",
+				"name": "食人魔",
+				"name_en": "ogre",
+				"unicode": [
+					55357,
+					56441
+				]
+			},
+			{
+				"emoji": "👺",
+				"name": "小妖精",
+				"name_en": "goblin",
+				"unicode": [
+					55357,
+					56442
+				]
+			},
+			{
+				"emoji": "👻",
+				"name": "鬼",
+				"name_en": "ghost",
+				"unicode": [
+					55357,
+					56443
+				]
+			},
+			{
+				"emoji": "👽",
+				"name": "外星人",
+				"name_en": "alien",
+				"unicode": [
+					55357,
+					56445
+				]
+			},
+			{
+				"emoji": "👾",
+				"name": "外星怪物",
+				"name_en": "alien monster",
+				"unicode": [
+					55357,
+					56446
+				]
+			},
+			{
+				"emoji": "🤖",
+				"name": "机器人",
+				"name_en": "robot",
+				"unicode": [
+					55358,
+					56598
+				]
+			}
+		]
+	},
+	{
+		"group_name": "猫脸",
+		"data": [
+			{
+				"emoji": "😺",
+				"name": "大笑的猫",
+				"name_en": "grinning cat",
+				"unicode": [
+					55357,
+					56890
+				]
+			},
+			{
+				"emoji": "😸",
+				"name": "微笑的猫",
+				"name_en": "grinning cat with smiling eyes",
+				"unicode": [
+					55357,
+					56888
+				]
+			},
+			{
+				"emoji": "😹",
+				"name": "笑出眼泪的猫",
+				"name_en": "cat with tears of joy",
+				"unicode": [
+					55357,
+					56889
+				]
+			},
+			{
+				"emoji": "😻",
+				"name": "花痴的猫",
+				"name_en": "smiling cat with heart-eyes",
+				"unicode": [
+					55357,
+					56891
+				]
+			},
+			{
+				"emoji": "😼",
+				"name": "奸笑的猫",
+				"name_en": "cat with wry smile",
+				"unicode": [
+					55357,
+					56892
+				]
+			},
+			{
+				"emoji": "😽",
+				"name": "亲亲猫",
+				"name_en": "kissing cat",
+				"unicode": [
+					55357,
+					56893
+				]
+			},
+			{
+				"emoji": "🙀",
+				"name": "疲倦的猫",
+				"name_en": "weary cat",
+				"unicode": [
+					55357,
+					56896
+				]
+			},
+			{
+				"emoji": "😿",
+				"name": "哭泣的猫",
+				"name_en": "crying cat",
+				"unicode": [
+					55357,
+					56895
+				]
+			},
+			{
+				"emoji": "😾",
+				"name": "生气的猫",
+				"name_en": "pouting cat",
+				"unicode": [
+					55357,
+					56894
+				]
+			}
+		]
+	},
+	{
+		"group_name": "猴脸",
+		"data": [
+			{
+				"emoji": "🙈",
+				"name": "非礼勿视",
+				"name_en": "see-no-evil monkey",
+				"unicode": [
+					55357,
+					56904
+				]
+			},
+			{
+				"emoji": "🙉",
+				"name": "非礼勿听",
+				"name_en": "hear-no-evil monkey",
+				"unicode": [
+					55357,
+					56905
+				]
+			},
+			{
+				"emoji": "🙊",
+				"name": "非礼勿言",
+				"name_en": "speak-no-evil monkey",
+				"unicode": [
+					55357,
+					56906
+				]
+			}
+		]
+	},
+	{
+		"group_name": "情感",
+		"data": [
+			{
+				"emoji": "💋",
+				"name": "唇印",
+				"name_en": "kiss mark",
+				"unicode": [
+					55357,
+					56459
+				]
+			},
+			{
+				"emoji": "💌",
+				"name": "情书",
+				"name_en": "love letter",
+				"unicode": [
+					55357,
+					56460
+				]
+			},
+			{
+				"emoji": "💘",
+				"name": "心中箭了",
+				"name_en": "heart with arrow",
+				"unicode": [
+					55357,
+					56472
+				]
+			},
+			{
+				"emoji": "💝",
+				"name": "系有缎带的心",
+				"name_en": "heart with ribbon",
+				"unicode": [
+					55357,
+					56477
+				]
+			},
+			{
+				"emoji": "💖",
+				"name": "闪亮的心",
+				"name_en": "sparkling heart",
+				"unicode": [
+					55357,
+					56470
+				]
+			},
+			{
+				"emoji": "💗",
+				"name": "搏动的心",
+				"name_en": "growing heart",
+				"unicode": [
+					55357,
+					56471
+				]
+			},
+			{
+				"emoji": "💓",
+				"name": "心跳",
+				"name_en": "beating heart",
+				"unicode": [
+					55357,
+					56467
+				]
+			},
+			{
+				"emoji": "💞",
+				"name": "舞动的心",
+				"name_en": "revolving hearts",
+				"unicode": [
+					55357,
+					56478
+				]
+			},
+			{
+				"emoji": "💕",
+				"name": "两颗心",
+				"name_en": "two hearts",
+				"unicode": [
+					55357,
+					56469
+				]
+			},
+			{
+				"emoji": "💟",
+				"name": "心型装饰",
+				"name_en": "heart decoration",
+				"unicode": [
+					55357,
+					56479
+				]
+			},
+			{
+				"emoji": "❣️",
+				"name": "心叹号",
+				"name_en": "heart exclamation",
+				"unicode": [
+					10083,
+					65039
+				]
+			},
+			{
+				"emoji": "💔",
+				"name": "心碎",
+				"name_en": "broken heart",
+				"unicode": [
+					55357,
+					56468
+				]
+			},
+			{
+				"emoji": "❤️",
+				"name": "红心",
+				"name_en": "red heart",
+				"unicode": [
+					10084,
+					65039
+				]
+			},
+			{
+				"emoji": "🧡",
+				"name": "橙心",
+				"name_en": "orange heart",
+				"unicode": [
+					55358,
+					56801
+				]
+			},
+			{
+				"emoji": "💛",
+				"name": "黄心",
+				"name_en": "yellow heart",
+				"unicode": [
+					55357,
+					56475
+				]
+			},
+			{
+				"emoji": "💚",
+				"name": "绿心",
+				"name_en": "green heart",
+				"unicode": [
+					55357,
+					56474
+				]
+			},
+			{
+				"emoji": "💙",
+				"name": "蓝心",
+				"name_en": "blue heart",
+				"unicode": [
+					55357,
+					56473
+				]
+			},
+			{
+				"emoji": "💜",
+				"name": "紫心",
+				"name_en": "purple heart",
+				"unicode": [
+					55357,
+					56476
+				]
+			},
+			{
+				"emoji": "🤎",
+				"name": "棕心",
+				"name_en": "brown heart",
+				"unicode": [
+					55358,
+					56590
+				]
+			},
+			{
+				"emoji": "🖤",
+				"name": "黑心",
+				"name_en": "black heart",
+				"unicode": [
+					55357,
+					56740
+				]
+			},
+			{
+				"emoji": "🤍",
+				"name": "白心",
+				"name_en": "white heart",
+				"unicode": [
+					55358,
+					56589
+				]
+			},
+			{
+				"emoji": "💯",
+				"name": "一百分",
+				"name_en": "hundred points",
+				"unicode": [
+					55357,
+					56495
+				]
+			},
+			{
+				"emoji": "💢",
+				"name": "怒",
+				"name_en": "anger symbol",
+				"unicode": [
+					55357,
+					56482
+				]
+			},
+			{
+				"emoji": "💥",
+				"name": "爆炸",
+				"name_en": "collision",
+				"unicode": [
+					55357,
+					56485
+				]
+			},
+			{
+				"emoji": "💫",
+				"name": "头晕",
+				"name_en": "dizzy",
+				"unicode": [
+					55357,
+					56491
+				]
+			},
+			{
+				"emoji": "💦",
+				"name": "汗滴",
+				"name_en": "sweat droplets",
+				"unicode": [
+					55357,
+					56486
+				]
+			},
+			{
+				"emoji": "💨",
+				"name": "尾气",
+				"name_en": "dashing away",
+				"unicode": [
+					55357,
+					56488
+				]
+			},
+			{
+				"emoji": "🕳️",
+				"name": "洞",
+				"name_en": "hole",
+				"unicode": [
+					55357,
+					56691,
+					65039
+				]
+			},
+			{
+				"emoji": "💣",
+				"name": "炸弹",
+				"name_en": "bomb",
+				"unicode": [
+					55357,
+					56483
+				]
+			},
+			{
+				"emoji": "💬",
+				"name": "话语气泡",
+				"name_en": "speech balloon",
+				"unicode": [
+					55357,
+					56492
+				]
+			},
+			{
+				"emoji": "👁️‍🗨️",
+				"name": "眼睛对话框",
+				"name_en": "eye in speech bubble",
+				"unicode": [
+					55357,
+					56385,
+					65039,
+					8205,
+					55357,
+					56808,
+					65039
+				]
+			},
+			{
+				"emoji": "🗨️",
+				"name": "朝左的话语气泡",
+				"name_en": "left speech bubble",
+				"unicode": [
+					55357,
+					56808,
+					65039
+				]
+			},
+			{
+				"emoji": "🗯️",
+				"name": "愤怒话语气泡",
+				"name_en": "right anger bubble",
+				"unicode": [
+					55357,
+					56815,
+					65039
+				]
+			},
+			{
+				"emoji": "💭",
+				"name": "内心活动气泡",
+				"name_en": "thought balloon",
+				"unicode": [
+					55357,
+					56493
+				]
+			},
+			{
+				"emoji": "💤",
+				"name": "睡着",
+				"name_en": "ZZZ",
+				"unicode": [
+					55357,
+					56484
+				]
+			},
+			{
+				"emoji": "❤️‍🔥",
+				"name": "火上之心",
+				"name_en": "heart on fire",
+				"unicode": [
+					10084,
+					65039,
+					8205,
+					55357,
+					56613
+				]
+			},
+			{
+				"emoji": "❤️‍🩹",
+				"name": "修复受伤的心灵",
+				"name_en": "mending heart",
+				"unicode": [
+					10084,
+					65039,
+					8205,
+					55358,
+					56953
+				]
+			}
+		]
+	}
+]

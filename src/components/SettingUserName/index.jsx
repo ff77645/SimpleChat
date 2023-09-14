@@ -4,25 +4,20 @@ import { useEffect, useRef, useState } from "react";
 
 
 
-export default function ActionModal({
-        isOpen,
-        onOpenChange,
-        modalState,
-        onConfirm,
-    }){
+export default function SettingUserName(){
     const inputRef = useRef()
     const [inputValue,setInputValue] = useState('')
 
     useEffect(()=>{
-        isOpen && inputRef.current.focus()
-    },[isOpen])
+        inputRef.current.focus()
+    },[])
 
     const handleConfirm = ()=>{
-        onConfirm(inputValue)
-        onOpenChange(false)
+        console.log('handleConfirm');
     }
 
     const handleKeyDown = e =>{
+        e.key === 'Escape' && onOpenChange(false)
         if(e.key !== 'Enter') return
         handleConfirm()
     }
@@ -36,7 +31,7 @@ export default function ActionModal({
             <ModalContent> 
                 {(onClose) => (
                     <>
-                        <ModalHeader className="justify-center">{modalState.title}</ModalHeader>
+                        <ModalHeader className="justify-center">设置用户名</ModalHeader>
                         <ModalBody>
                             <Input value={inputValue} onKeyDown={handleKeyDown} onChange={e=>setInputValue(e.target.value)} ref={inputRef} type={modalState.inputType || 'text'} />
                         </ModalBody>
