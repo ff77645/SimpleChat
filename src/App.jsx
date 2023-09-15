@@ -4,6 +4,7 @@ import {actionType} from './helper/action-type'
 import SettingUserName from "./components/SettingUserName";
 import {GlobalContext} from './contexts/global'
 import ChatInput from './components/ChatInput'
+import {ChatContext} from './contexts/chat'
 
 const modals = {
   [actionType.SETTING_USER_NAME]:<SettingUserName></SettingUserName>
@@ -13,15 +14,15 @@ const modals = {
 function App() {
   const [msgList, setMsgList] = useState([]);
   const [state] = useContext(GlobalContext)
-  
-  // input 事件处理
-  
+  const scrollRef = useRef(null);
 
 
+  const sendMsg = msg =>{
+    setMsgList(list => list.concat(msg));
+  }
 
   
   // 消息监听滚动
-  const scrollRef = useRef(null);
   useEffect(() => {
     scrollRef.current.scrollTo({
       top: scrollRef.current.scrollHeight,
@@ -46,9 +47,11 @@ function App() {
               <Message data={data} align="left" key={index}></Message>
             ))}
         </div>
-        {modals[state.modalName]}
+        <ChatContext.Provider value={sendMsg}>
+          {modals[state.modalName]}
+        </ChatContext.Provider>
       </div>
-      <ChatInput></ChatInput>
+      <ChatInput onSend={sendMsg}></ChatInput>
     </div>
   );
 }

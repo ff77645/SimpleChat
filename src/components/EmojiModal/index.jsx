@@ -19,12 +19,19 @@ export default function EmojiModal({
     }
     return (
         <div 
-            onClick={clickWrap} 
-            ref={target} className="absolute flex items-end bottom-[110%] left-0 w-full overflow-auto"
+            className="absolute flex items-end bottom-[110%] left-0 w-full overflow-auto"
             style={{
                 height:'calc(100vh - 50px)'
             }}
-        >
+        >  
+            <div 
+                onClick={clickWrap} 
+                ref={target} 
+                className="fixed top-0 left-0 w-full"
+                style={{
+                    height:'calc(100vh - 50px)'
+                }}
+            ></div>
             <div className="w-full bg-[rgba(255,255,255,.7)] py-4 px-6 z-10 rounded-xl h-[50vh] overflow-auto">
                 {
                     emojiData.map((group,index)=>(

@@ -4,32 +4,25 @@ import {BsEmojiSmile,BsEmojiHeartEyes} from 'react-icons/bs'
 import Command from '../Command'
 
 
-function ChatInput({onKeyDown,...props},ref){
-    const [isOpenEmoji,setIsOpenEmoji] = useState(true)
-
-
-    const onConfirm = val =>{
-        props.onChange({target:{value:props.value + val}})
-        ref.current.focus()
-    }
-
-    // const handleKeyDown = e =>{
-    //     if(e.key === 'Escape') setIsOpenEmoji(!isOpenEmoji)
-    //     onKeyDown(e)
-    // }
-
-    const [isOpenCmd,setIsOpenCmd] = useState(false)
+function ChatInput({onSend},ref){
+    const inputRef = useRef()
     const CommandRef = useRef(null)
+    const [isOpenCmd,setIsOpenCmd] = useState(false)
     const [inputValue, setInputValue] = useState("");
+    const [isOpenEmoji,setIsOpenEmoji] = useState(true)
+    
+    const emojiConfirm = val =>{
+        inputRef.current.focus()
+        setInputValue(s=>s+val)
+    }
 
     const handleKeyEnter = ()=>{
         if(isOpenCmd) return CommandRef.current.enter()
-        setMsgList(list => list.concat({ 
+        onSend({ 
             text: inputValue,
             avatar:'http://pic.yupoo.com/isfy666/ca92284b/96330991.jpeg',
             name:'Tom',
-        }));
-        setIsOpenCmd(false)
+        })
         setInputValue("");
     }
 
@@ -43,32 +36,35 @@ function ChatInput({onKeyDown,...props},ref){
     }
 
     const handleKeyDown = (e) => {
+        if(e.key === 'Enter'){
+            handleKeyEnter()
+        }else if(e.key === 'Escape'){
+            isOpenCmd && setInputValue("");
+            isOpenCmd ? setIsOpenCmd(false) : setIsOpenEmoji(!isOpenEmoji)
+        }
+        if(!isOpenCmd) return
         switch(e.key){
-            case 'Enter':
-                handleKeyEnter()
-                break;
             case 'ArrowDown':
-                e.preventDefault()
                 CommandRef.current.arrowDown()
+                e.preventDefault()
                 break;
             case 'ArrowUp':
-                e.preventDefault()
                 CommandRef.current.arrowUp()
-                break;
-            case 'Escape':
-                setIsOpenCmd(false)
-                isOpenCmd && setInputValue("");
+                e.preventDefault()
                 break;
         }
     };
 
     return (
-        <div className="h-[50px] flex-none relative w-1/2 mx-auto">
-            { isOpenEmoji && <EmojiModal onClose={()=>setIsOpenEmoji(false)} onConfirm={onConfirm}></EmojiModal>}
-            { isOpenCmd && <Command ref={CommandRef} onClose={onCommandClose} value={inputValue}></Command>}
+        <div className="h-[50px] flex-none relative w-1/2 mx-auto min-w-[500px]">
+            { 
+                isOpenCmd ? 
+                    <Command ref={CommandRef} onClose={onCommandClose} value={inputValue} /> : 
+                    isOpenEmoji ? <EmojiModal onClose={()=>setIsOpenEmoji(false)} onConfirm={emojiConfirm}/> : ''
+            }
             <div className='h-full flex flex-row flex-nowrap items-center rounded-lg overflow-hidden bg-white'>
                 <input
-                    {...props}
+                    ref={inputRef}
                     autoFocus
                     value={inputValue}
                     onChange={handleInputChange}

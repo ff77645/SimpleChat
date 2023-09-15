@@ -14,7 +14,7 @@ export default function SettingUserName(){
     }
     
     const onClose = ()=>{
-        dispatch({type:'setAction',value:''})
+        dispatch({type:'setModalName',name:''})
     }
 
     const handleKeyDown = e =>{

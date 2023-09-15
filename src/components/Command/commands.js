@@ -1,4 +1,4 @@
-import { actionType } from './action-type'
+import { actionType } from '../../helper/action-type'
 
 export const commands = [
     // 设置
@@ -22,12 +22,12 @@ export const commands = [
     //     rep_en:'send: emoji',
     //     action:actionType.SEND_EMOJI,
     // },
-    {
-        keywords:'send 发送 emoji 表情 favorite 收藏',
-        rep:'发送: 收藏表情',
-        rep_en:'send: favorite emoji',
-        action:actionType.SEND_FAV_EMOJI,
-    },
+    // {
+    //     keywords:'send 发送 emoji 表情 favorite 收藏',
+    //     rep:'发送: 收藏表情',
+    //     rep_en:'send: favorite emoji',
+    //     action:actionType.SEND_FAV_EMOJI,
+    // },
 
     // 发送图片
     {
