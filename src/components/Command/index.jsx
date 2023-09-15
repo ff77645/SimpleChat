@@ -1,6 +1,5 @@
 import {useEffect, useRef, useState,useImperativeHandle,forwardRef,useContext} from 'react'
 import {commands} from '../../helper/commands'
-import {CommandContext} from '../../helper/context'
 
 
 const useCommandState = ()=>{
@@ -32,7 +31,7 @@ const useCommandState = ()=>{
 
 
 
-function CommandBox({value,onClose},ref){
+function Command({value,onClose},ref){
     const {
         cmdList,
         currentIndex,
@@ -40,7 +39,6 @@ function CommandBox({value,onClose},ref){
         setCurrentIndex,
     } = useCommandState()
     const target = useRef()
-    const dispatch = useContext(CommandContext)
     useEffect(()=>{
         filterCli(value.slice(1).trim())
     },[value])
@@ -53,7 +51,7 @@ function CommandBox({value,onClose},ref){
         setCurrentIndex(index)
         const cmd = cmdList[index]
         if(!cmd) return
-        dispatch(cmd)
+        // dispatch(cmd)
         onClose()
     }
 
@@ -94,4 +92,4 @@ function CommandBox({value,onClose},ref){
     )
 }
 
-export default forwardRef(CommandBox)
+export default forwardRef(Command)

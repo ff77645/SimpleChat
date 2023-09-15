@@ -2,18 +2,16 @@
 
 
 export const initialState = {
-    action:''
+    modalName:''
 }
 
 
 const methods = {
-    setAction(state,{value}){
-        const res = {
+    setModalName(state,{name}){
+        return {
             ...state,
-            action:value
+            modalName:name
         }
-        console.log({res,value});
-        return res
     }
 }
 

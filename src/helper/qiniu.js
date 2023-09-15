@@ -4,8 +4,8 @@ import {
     compressImage as qiniu_compressImage,
 } from 'qiniu-js'
 import dayjs from 'dayjs'
-import {qiniu} from '../config'
-import {hmacSha1,base64UrlSafeEncode} from './index'
+import cfg_qiniu from '../config/qiniu'
+import {hmacSha1,base64UrlSafeEncode} from '../utils'
 
 // https://developer.qiniu.com/kodo/1283/javascript
 
@@ -22,7 +22,7 @@ export function generateUploadToken(options) {
 
 
 export const uploadFile = (file,name,putExtra={},config={})=>{
-    const token = generateUploadToken(qiniu)
+    const token = generateUploadToken(cfg_qiniu)
     const observable = upload(file, name, token, putExtra, config)
     observable.subscribe({
         next(res){
