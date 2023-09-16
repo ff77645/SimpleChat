@@ -1,6 +1,6 @@
 
 
-export async function selectUserHead() {
+export async function selectImage() {
     const pickerOpts = {
         types: [
             {

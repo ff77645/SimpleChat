@@ -1,6 +1,10 @@
 import {useEffect, useRef, useState,useImperativeHandle,forwardRef,useContext} from 'react'
 import {commands} from './commands'
 import {GlobalContext} from '../../contexts/global'
+import {useSetUserHead} from './handles'
+import { actionType } from './type'
+import { ChatContext } from '../../contexts/chat'
+import {selectImage} from '@/helper'
 
 
 const useCommandState = ()=>{
@@ -19,9 +23,7 @@ const useCommandState = ()=>{
         console.log({keys,str,list});
     }
 
-    const enter = () =>{
-        select(currentIndex)
-    }
+   
     
     const arrowUp = () =>{
         if(currentIndex <= 0) return 
@@ -34,7 +36,6 @@ const useCommandState = ()=>{
     }
 
     return {
-        enter,
         arrowUp,
         arrowDown,
         cmdList,
@@ -51,7 +52,6 @@ const useCommandState = ()=>{
 
 function Command({value,onClose},ref){
     const {
-        enter,
         arrowUp,
         arrowDown,
         cmdList,
@@ -61,11 +61,23 @@ function Command({value,onClose},ref){
     } = useCommandState()
     const target = useRef()
     const [_,dispatch] = useContext(GlobalContext)
+    const sendMsg = useContext(ChatContext)
+    console.log({sendMsg});
+    const {
+        selectHeadImg
+    } = useSetUserHead()
 
+    const sendImage = async ()=>{
+        const file = await selectImage()
+        sendMsg({
+            type:'image',
+            value: URL.createObjectURL(file),
+            avatar:'http://pic.yupoo.com/isfy666/ca92284b/96330991.jpeg',
+            name:'Tom',
+        })
+    }
 
-    useEffect(()=>{
-        filterCli(value.slice(1).trim())
-    },[value])
+    
 
     const handleClick = e =>{
         e.target === target.current && onClose && onClose()
@@ -75,14 +87,27 @@ function Command({value,onClose},ref){
         setCurrentIndex(index)
         const cmd = cmdList[index]
         if(!cmd) return
-        dispatch({
-            type:'setModalName',
-            name:cmd.action,
-        })
+        if(cmd.action === actionType.SETTING_HEAD){
+            selectHeadImg()
+        }else if(cmd.action === actionType.SEND_IMAGE){
+            sendImage()
+        }else{
+            dispatch({
+                type:'setModalName',
+                name:cmd.action,
+            })
+        }
         onClose()
     }
 
+
     
+    const enter = () =>{
+        selectCmdIndex(currentIndex)
+    }
+    useEffect(()=>{
+        filterCli(value.slice(1).trim())
+    },[value])
 
     useImperativeHandle(ref,()=>{
         return {

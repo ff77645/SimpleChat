@@ -1,13 +1,14 @@
-import { Modal,ModalContent,ModalHeader,ModalBody,ModalFooter,Button,Input} from "@nextui-org/react";
+import { Modal,ModalContent,ModalHeader,ModalBody,ModalFooter,Button,Avatar} from "@nextui-org/react";
 import { useContext, useEffect, useRef, useState } from "react";
 import {GlobalContext} from '../../contexts/global'
 
 
 
 
-export default function SettingUserName(){
-    const [inputValue,setInputValue] = useState('')
-    const [_,dispatch] = useContext(GlobalContext)
+export default function SettingUserHead(){
+    const [state,dispatch] = useContext(GlobalContext)
+
+    const userHead = URL.createObjectURL(state.selectedHeadFile)
 
     const handleConfirm = ()=>{
         console.log('handleConfirm');
@@ -15,13 +16,13 @@ export default function SettingUserName(){
     
     const onClose = ()=>{
         dispatch({type:'setModalName',name:''})
+        URL.revokeObjectURL(userHead)
+        dispatch({
+            type:'setSelectedHeadFile',
+            file:''
+        })
     }
 
-    const handleKeyDown = e =>{
-        e.key === 'Escape' && onClose()
-        if(e.key !== 'Enter') return
-        handleConfirm()
-    }
     return (
         <Modal 
             hideCloseButton
@@ -31,15 +32,15 @@ export default function SettingUserName(){
             <ModalContent> 
                 {(onClose) => (
                     <>
-                        <ModalHeader className="justify-center">设置用户名</ModalHeader>
-                        <ModalBody>
-                            <Input autoFocus value={inputValue} onKeyDown={handleKeyDown} onChange={e=>setInputValue(e.target.value)} placeholder="请输入用户名" type="text" />
+                        <ModalHeader className="justify-center">设置头像</ModalHeader>
+                        <ModalBody className="items-center">
+                            <Avatar src={userHead} className="w-20 h-20 text-large" />
                         </ModalBody>
                         <ModalFooter className="justify-around">
                             <Button color="danger" variant="light" onPress={onClose}>
                                 取消
                             </Button>
-                            <Button color="primary" onPress={onClose}>
+                            <Button color="primary" onPress={handleConfirm}>
                                 确认
                             </Button>
                         </ModalFooter>

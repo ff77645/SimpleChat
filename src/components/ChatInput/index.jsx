@@ -8,8 +8,8 @@ function ChatInput({onSend},ref){
     const inputRef = useRef()
     const CommandRef = useRef(null)
     const [isOpenCmd,setIsOpenCmd] = useState(false)
-    const [inputValue, setInputValue] = useState("");
-    const [isOpenEmoji,setIsOpenEmoji] = useState(true)
+    const [inputValue, setInputValue] = useState("")
+    const [isOpenEmoji,setIsOpenEmoji] = useState(false)
     
     const emojiConfirm = val =>{
         inputRef.current.focus()
@@ -19,7 +19,8 @@ function ChatInput({onSend},ref){
     const handleKeyEnter = ()=>{
         if(isOpenCmd) return CommandRef.current.enter()
         onSend({ 
-            text: inputValue,
+            type:'text',
+            value: inputValue,
             avatar:'http://pic.yupoo.com/isfy666/ca92284b/96330991.jpeg',
             name:'Tom',
         })

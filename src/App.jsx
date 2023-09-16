@@ -1,13 +1,21 @@
 import { useEffect, useRef, useState,useContext } from "react";
 import Message from "./components/Message";
-import {actionType} from './helper/action-type'
+import {actionType} from './components/Command/type'
 import SettingUserName from "./components/SettingUserName";
 import {GlobalContext} from './contexts/global'
 import ChatInput from './components/ChatInput'
 import {ChatContext} from './contexts/chat'
+import SettingUserHead from "./components/SettingUserHead";
+import SendMusic from "./components/SendMusic";
+import CreateRoom from './components/CreateRoom'
+import JoinRoom from './components/JoinRoom'
 
 const modals = {
-  [actionType.SETTING_USER_NAME]:<SettingUserName></SettingUserName>
+  [actionType.SETTING_USER_NAME]:<SettingUserName/>,
+  [actionType.SETTING_HEAD]:<SettingUserHead/>,
+  [actionType.SEND_MUSIC]:<SendMusic/>,
+  [actionType.CREATE_ROOM]:<CreateRoom/>,
+  [actionType.JOIN_ROOM]:<JoinRoom/>,
 }
 
 
@@ -18,6 +26,7 @@ function App() {
 
 
   const sendMsg = msg =>{
+    console.log({msg});
     setMsgList(list => list.concat(msg));
   }
 
@@ -47,11 +56,11 @@ function App() {
               <Message data={data} align="left" key={index}></Message>
             ))}
         </div>
-        <ChatContext.Provider value={sendMsg}>
-          {modals[state.modalName]}
-        </ChatContext.Provider>
       </div>
-      <ChatInput onSend={sendMsg}></ChatInput>
+      <ChatContext.Provider value={sendMsg}>
+        {modals[state.modalName]}
+        <ChatInput onSend={sendMsg}></ChatInput>
+      </ChatContext.Provider>
     </div>
   );
 }

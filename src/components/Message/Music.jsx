@@ -1,7 +1,7 @@
 import {Avatar} from "@nextui-org/react";
 
 
-export default function Text({data,align}){
+export default function Music({data,align}){
 
     return (
         <div className={`mx-3 mt-2 flex ${align === 'right' ? 'flex-row-reverse' : 'flex-row'} flex-nowrap gap-2 p-2`}>
@@ -9,7 +9,8 @@ export default function Text({data,align}){
             <div className={`flex-1  ${align === 'right' && 'text-right'}`}>
                 <div className="text-gray-600 text-xs pt-2 w-auto">{data.name}</div>
                 <div className="bg-white rounded p-2 text-black mt-2 inline-block min-h-[40px]">
-                    {data.value}
+                    <div className="">{data.value.name}</div>
+                    <div className="">{data.value.songer}</div>
                 </div>
             </div>
         </div>

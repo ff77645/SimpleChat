@@ -2,7 +2,8 @@
 
 
 export const initialState = {
-    modalName:''
+    modalName:'SEND_MUSIC',
+    selectedHeadFile:'',
 }
 
 
@@ -11,6 +12,12 @@ const methods = {
         return {
             ...state,
             modalName:name
+        }
+    },
+    setSelectedHeadFile(state,{file}){
+        return {
+            ...state,
+            selectedHeadFile:file,
         }
     }
 }

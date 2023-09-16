@@ -1,4 +1,4 @@
-import { actionType } from '../../helper/action-type'
+import { actionType } from './type'
 
 export const commands = [
     // 设置
@@ -44,4 +44,17 @@ export const commands = [
         rep_en:'send: music',
         action:actionType.SEND_MUSIC,
     },
+    //
+    {
+        keywords:'room 房间 create 创建',
+        rep:'房间: 创建房间',
+        rep_en:'room: create room',
+        action:actionType.CREATE_ROOM,
+    }, 
+    {
+        keywords:'room 房间 join 加入',
+        rep:'房间: 加入房间',
+        rep_en:'room: join room',
+        action:actionType.JOIN_ROOM,
+    }, 
 ]
