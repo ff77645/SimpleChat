@@ -9,6 +9,7 @@ import SettingUserHead from "./components/SettingUserHead";
 import SendMusic from "./components/SendMusic";
 import CreateRoom from './components/CreateRoom'
 import JoinRoom from './components/JoinRoom'
+import {io} from 'socket.io-client'
 
 const modals = {
   [actionType.SETTING_USER_NAME]:<SettingUserName/>,
@@ -18,11 +19,25 @@ const modals = {
   [actionType.JOIN_ROOM]:<JoinRoom/>,
 }
 
+const roomData = {
+  roomName:'公共频道',
+  roomNumber:'',
+}
+
+const initSocket = ()=>{
+  const socket = io('http://localhost:3000/chat')
+  socket.on('connect',()=>{
+    console.log('socket connect,',socket.id);
+  })
+  return socket
+}
+
 
 function App() {
   const [msgList, setMsgList] = useState([]);
   const [state] = useContext(GlobalContext)
   const scrollRef = useRef(null);
+  const socket = useRef()
 
 
   const sendMsg = msg =>{
@@ -30,6 +45,12 @@ function App() {
     setMsgList(list => list.concat(msg));
   }
 
+  useEffect(()=>{
+    socket.current = initSocket()
+    return ()=>{
+      socket.current.off()
+    }
+  },[])
   
   // 消息监听滚动
   useEffect(() => {
