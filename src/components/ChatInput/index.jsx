@@ -73,9 +73,11 @@ function ChatInput({onSend},ref){
                     type="text"
                     className="w-full h-full outline-none resize-none box-border px-2 break-words"
                 />
-                <div onClick={()=>setIsOpenEmoji(!isOpenEmoji)} className="p-3 cursor-pointer bg-slate-200 rounded-full mr-4 text-lg">
-                    {isOpenEmoji ? <BsEmojiHeartEyes className='text-red-500' /> : <BsEmojiSmile className='text-gray-600' />}
-                </div>
+                {
+                    isOpenCmd || <div onClick={()=>setIsOpenEmoji(!isOpenEmoji)} className="p-3 cursor-pointer bg-slate-200 rounded-full mr-4 text-lg">
+                            {isOpenEmoji ? <BsEmojiHeartEyes className='text-red-500' /> : <BsEmojiSmile className='text-gray-600' />}
+                        </div>
+                }
             </div>
         </div>
     )

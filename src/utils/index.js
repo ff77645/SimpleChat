@@ -27,7 +27,7 @@ export function base64ToBlob(dataurl, filename) {
 
 
 export function blobToFile(blob,type) {
-    return new File([blob], 'filename.png', { type: type || 'image/jpeg' })
+    return new File([blob], 'filename', { type: type || 'image/jpeg' })
 }
 
 

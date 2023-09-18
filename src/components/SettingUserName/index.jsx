@@ -31,9 +31,9 @@ export default function SettingUserName(){
             <ModalContent> 
                 {(onClose) => (
                     <>
-                        <ModalHeader className="justify-center">设置用户名</ModalHeader>
+                        <ModalHeader className="justify-center">设置昵称</ModalHeader>
                         <ModalBody>
-                            <Input autoFocus value={inputValue} onKeyDown={handleKeyDown} onChange={e=>setInputValue(e.target.value)} placeholder="请输入用户名" type="text" />
+                            <Input autoFocus value={inputValue} onKeyDown={handleKeyDown} onChange={e=>setInputValue(e.target.value)} placeholder="请输入昵称" type="text" />
                         </ModalBody>
                         <ModalFooter className="justify-around">
                             <Button color="danger" variant="light" onPress={onClose}>

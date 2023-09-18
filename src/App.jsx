@@ -41,14 +41,16 @@ function App() {
 
   return (
     <div className="h-screen bg-gray-200">
-      <div className="h-[50px] text-center bg-white flex flex-row items-center justify-center">
+      <div className="h-[50px] bg-white flex flex-row items-center justify-between px-4">
+        <div>房号:123</div>
         <h2 
           // suppressContentEditableWarning
           // contentEditable={true} 
-          className="text-xl font-[500]"
+          className="text-xl font-[500]" 
         >
           header
         </h2>
+        <div>?</div>
       </div>
       <div className="relative" style={{height:'calc(100vh - 100px)'}}>
         <div ref={scrollRef} className="overflow-y-auto h-full">
