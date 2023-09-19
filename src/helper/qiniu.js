@@ -25,16 +25,16 @@ export const uploadFile = (file,name,putExtra={},config={})=>{
     const token = generateUploadToken(cfg_qiniu)
     const observable = upload(file, name, token, putExtra, config)
     observable.subscribe({
-        next(res){
-          console.log('next',res)
-        },
-        error(err){
-          console.log('err0r',err)
-        },
-        complete(res){
-          console.log('complete',res)
-        }
-      })
+      next(res){
+        console.log('next',res)
+      },
+      error(err){
+        console.log('err0r',err)
+      },
+      complete(res){
+        console.log('complete',res)
+      }
+    })
 }
 
 

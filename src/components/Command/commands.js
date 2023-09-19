@@ -41,4 +41,17 @@ export const commands = [
         rep_en:'Room: Join Room',
         action:actionType.JOIN_ROOM,
     },
+    // 账号
+    {
+        keywords:'login 登录 account 账号 user 用户',
+        rep:'用户: 用户登录',
+        rep_en:'User: User Login',
+        action:actionType.Login,
+    },
+    {
+        keywords:'setting 设置 account 账号 user 用户',
+        rep:'用户: 用户设置',
+        rep_en:'User: User Setting',
+        action:actionType.Login,
+    },
 ]

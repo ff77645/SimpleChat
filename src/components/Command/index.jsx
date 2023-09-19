@@ -23,8 +23,6 @@ const useCommandState = ()=>{
         console.log({keys,str,list});
     }
 
-   
-    
     const arrowUp = () =>{
         if(currentIndex <= 0) return 
         setCurrentIndex(currentIndex-1)
@@ -45,10 +43,6 @@ const useCommandState = ()=>{
         setCurrentIndex,
     }
 }
-
-
-
-
 
 function Command({value,onClose},ref){
     const {
@@ -77,8 +71,6 @@ function Command({value,onClose},ref){
         })
     }
 
-    
-
     const handleClick = e =>{
         e.target === target.current && onClose && onClose()
     }
@@ -88,23 +80,20 @@ function Command({value,onClose},ref){
         const cmd = cmdList[index]
         if(!cmd) return
         if(cmd.action === actionType.SETTING_HEAD){
-            selectHeadImg()
+            // selectHeadImg()
+            dispatch('setModalName',cmd.action)
         }else if(cmd.action === actionType.SEND_IMAGE){
             sendImage()
         }else{
-            dispatch({
-                type:'setModalName',
-                name:cmd.action,
-            })
+            dispatch('setModalName',cmd.action)
         }
         onClose()
     }
-
-
     
     const enter = () =>{
         selectCmdIndex(currentIndex)
     }
+    
     useEffect(()=>{
         filterCli(value.slice(1).trim())
     },[value])

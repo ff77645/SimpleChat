@@ -21,8 +21,6 @@ function ChatInput({onSend},ref){
         onSend({ 
             type:'text',
             value: inputValue,
-            avatar:'http://pic.yupoo.com/isfy666/ca92284b/96330991.jpeg',
-            name:'Tom',
         })
         setInputValue("");
     }

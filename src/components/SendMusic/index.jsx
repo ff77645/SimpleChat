@@ -21,7 +21,7 @@ export default function SendMusic(){
     }
     
     const onClose = ()=>{
-        dispatch({type:'setModalName',name:''})
+        dispatch('setModalName','')
     }
 
     const handleKeyDown = e =>{

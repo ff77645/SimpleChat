@@ -2,29 +2,47 @@
 
 
 export const initialState = {
-    modalName:'SEND_MUSIC',
+    modalName:'SETTING_HEAD',
     selectedHeadFile:'',
+    roomData:{
+        roomName:'公共频道',
+        roomId:'000001',
+        roomNum:'000001',
+    },
+    userData:{},
 }
 
 
 const methods = {
-    setModalName(state,{name}){
+    setUserData(state,value){
         return {
             ...state,
-            modalName:name
+            userData:value,
         }
     },
-    setSelectedHeadFile(state,{file}){
+    setRoomData(state,value){
         return {
             ...state,
-            selectedHeadFile:file,
+            roomData:value,
         }
-    }
+    },
+    setModalName(state,value){
+        return {
+            ...state,
+            modalName:value,
+        }
+    },
+    setSelectedHeadFile(state,value){
+        return {
+            ...state,
+            selectedHeadFile:value,
+        }
+    },
 }
 
 
 
 
 export const reducer = (state,action)=>{
-    return methods[action.type](state,action)
+    return methods[action.type](state,action.value)
 }

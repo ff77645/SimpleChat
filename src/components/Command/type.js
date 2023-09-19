@@ -6,5 +6,6 @@ export const actionType = {
     SEND_IMAGE:'SEND_IMAGE',
     SEND_MUSIC:'SEND_MUSIC',
     CREATE_ROOM:'CREATE_ROOM',
-    JOIN_ROOM:'JOIN_ROOM'
+    JOIN_ROOM:'JOIN_ROOM',
+    Login:'LOGIN',
 }

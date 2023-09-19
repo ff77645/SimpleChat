@@ -9,6 +9,7 @@ import SettingUserHead from "./components/SettingUserHead";
 import SendMusic from "./components/SendMusic";
 import CreateRoom from './components/CreateRoom'
 import JoinRoom from './components/JoinRoom'
+import Login from './components/Login'
 import {io} from 'socket.io-client'
 
 const modals = {
@@ -17,12 +18,9 @@ const modals = {
   [actionType.SEND_MUSIC]:<SendMusic/>,
   [actionType.CREATE_ROOM]:<CreateRoom/>,
   [actionType.JOIN_ROOM]:<JoinRoom/>,
+  [actionType.Login]:<Login/>
 }
 
-const roomData = {
-  roomName:'公共频道',
-  roomNumber:'',
-}
 
 const initSocket = ()=>{
   const socket = io('http://localhost:3000/chat')
@@ -35,18 +33,42 @@ const initSocket = ()=>{
 
 function App() {
   const [msgList, setMsgList] = useState([]);
-  const [state] = useContext(GlobalContext)
+  const [state,dispatch] = useContext(GlobalContext)
   const scrollRef = useRef(null);
   const socket = useRef()
 
 
   const sendMsg = msg =>{
-    console.log({msg});
-    setMsgList(list => list.concat(msg));
+    console.log(state.userData);
+    if(state.userData.id === undefined) return dispatch('setModalName',actionType.Login)
+    const value = {
+      ...msg,
+      id:state.userData.id,
+      avatar:state.userData.avatar || 'http://pic.yupoo.com/isfy666/ca92284b/96330991.jpeg',
+      gender:state.userData.gender,
+      nickname:state.userData.nickname,
+      date:new Date(),
+    }
+    socket.current.emit('message',{
+      roomid:'000001',
+      value,
+    })
+    setMsgList(list=>list.concat(value))
   }
 
   useEffect(()=>{
-    socket.current = initSocket()
+    const handler = initSocket()
+
+    handler.on('message',data=>{
+      setMsgList(list=>list.concat(data))
+    })
+    
+    handler.on('connet',()=>{
+      // 初始化进入公共频道
+      socket.emit('join-room',state.roomData.roomId)
+    })
+
+    socket.current = handler
     return ()=>{
       socket.current.off()
     }

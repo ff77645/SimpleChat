@@ -14,14 +14,8 @@ export const useSetUserHead = () => {
     const selectHeadImg =  async ()=>{
         const file = await selectImage()
         console.log({file});
-        dispatch({
-            type:'setSelectedHeadFile',
-            file
-        })
-        dispatch({
-            type:'setModalName',
-            name:actionType.SETTING_HEAD
-        })
+        dispatch('setSelectedHeadFile',file)
+        dispatch('setModalName',actionType.SETTING_HEAD)
     }
     return {
         selectHeadImg
