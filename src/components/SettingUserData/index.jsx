@@ -32,13 +32,13 @@ const genders = [
   },
 ];
 
-export default function SettingUserHead() {
+export default function SettingUserData() {
   const [state, dispatch] = useContext(GlobalContext);
   const [nickname,setNickname] = useState(state.userData.nickname)
   const [gender,setGender] = useState(state.userData.gender + '')
   const [userAvatar,setUserAvatar] = useState('')
   //   const userHead = URL.createObjectURL(state.selectedHeadFile);
-  
+  console.log('userData',state.userData);
   const onClose = () => {
     dispatch("setModalName", "");
     // URL.revokeObjectURL(userHead);
@@ -88,7 +88,7 @@ export default function SettingUserHead() {
                     onClick={clickAvatar}
                 />
               </div>
-              <Select autoFocus label="性别" size="sm" defaultSelectedKeys={[gender]} onChange={e=>setGender(e.target.value)}>
+              <Select label="性别" size="sm" defaultSelectedKeys={[gender]} onChange={e=>setGender(e.target.value)}>
                 {genders.map((item) => (
                   <SelectItem key={item.value} value={item.value}>
                     {item.label}
@@ -96,6 +96,7 @@ export default function SettingUserHead() {
                 ))}
               </Select>
               <Input
+                autoFocus
                 value={nickname}
                 onChange={(e) => setNickname(e.target.value)}
                 placeholder="昵称"

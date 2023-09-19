@@ -54,7 +54,7 @@ function Command({value,onClose},ref){
         setCurrentIndex,
     } = useCommandState()
     const target = useRef()
-    const [_,dispatch] = useContext(GlobalContext)
+    const [state,dispatch] = useContext(GlobalContext)
     const sendMsg = useContext(ChatContext)
     console.log({sendMsg});
     const {
@@ -79,6 +79,11 @@ function Command({value,onClose},ref){
         setCurrentIndex(index)
         const cmd = cmdList[index]
         if(!cmd) return
+        if(!state.userData.id) {
+            dispatch('setModalName',actionType.Login)
+            onClose()
+            return
+        }
         if(cmd.action === actionType.SETTING_HEAD){
             // selectHeadImg()
             dispatch('setModalName',cmd.action)

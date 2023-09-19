@@ -8,4 +8,5 @@ export const actionType = {
     CREATE_ROOM:'CREATE_ROOM',
     JOIN_ROOM:'JOIN_ROOM',
     Login:'LOGIN',
+    SETTING_USER_DATA:'SETTING_USER_DATA',
 }

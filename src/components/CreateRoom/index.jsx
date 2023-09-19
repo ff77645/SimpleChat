@@ -1,16 +1,18 @@
 import { Modal,ModalContent,ModalHeader,ModalBody,ModalFooter,Button,Input} from "@nextui-org/react";
 import { useContext, useEffect, useRef, useState } from "react";
 import {GlobalContext} from '../../contexts/global'
-
-
-
+import toast from "react-hot-toast";
+import request from "../../utils/request";
 
 export default function SettingUserName(){
     const [inputValue,setInputValue] = useState('')
     const [_,dispatch] = useContext(GlobalContext)
 
-    const handleConfirm = ()=>{
-        console.log('handleConfirm');
+    const handleConfirm = async ()=>{
+        // console.log('handleConfirm');
+        if(!inputValue) return toast.error('请输入房间名称')
+        const res = await request.post('/room/create',{roomName:inputValue})
+        console.log({res});
     }
     
     const onClose = ()=>{

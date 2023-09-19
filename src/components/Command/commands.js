@@ -1,19 +1,19 @@
 import { actionType } from './type'
 
 export const commands = [
-    // 设置
-    {
-        keywords:'setting 设置 user head 头像',
-        rep:'设置: 用户头像',
-        rep_en:'Setting: User Head',
-        action:actionType.SETTING_HEAD,
-    },
-    {
-        keywords:'setting 设置 user name nikename 名字 昵称',
-        rep:'设置: 用户昵称',
-        rep_en:'Setting: User Nikename',
-        action:actionType.SETTING_USER_NAME,
-    },
+    // // 设置
+    // {
+    //     keywords:'setting 设置 user head 头像',
+    //     rep:'设置: 用户头像',
+    //     rep_en:'Setting: User Head',
+    //     action:actionType.SETTING_HEAD,
+    // },
+    // {
+    //     keywords:'setting 设置 user name nikename 名字 昵称',
+    //     rep:'设置: 用户昵称',
+    //     rep_en:'Setting: User Nikename',
+    //     action:actionType.SETTING_USER_NAME,
+    // },
     // 图片
     {
         keywords:'send 发送 image 图片',
@@ -44,14 +44,14 @@ export const commands = [
     // 账号
     {
         keywords:'login 登录 account 账号 user 用户',
-        rep:'用户: 用户登录',
-        rep_en:'User: User Login',
+        rep:'账号: 登录',
+        rep_en:'Account: Login',
         action:actionType.Login,
     },
     {
-        keywords:'setting 设置 account 账号 user 用户',
-        rep:'用户: 用户设置',
-        rep_en:'User: User Setting',
-        action:actionType.Login,
+        keywords:'setting 设置 account 账号 user 用户 head 头像 nikename 名字 昵称',
+        rep:'账号: 设置',
+        rep_en:'Account: Setting',
+        action:actionType.SETTING_USER_DATA,
     },
 ]

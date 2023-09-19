@@ -5,9 +5,9 @@ export const initialState = {
     modalName:'SETTING_HEAD',
     selectedHeadFile:'',
     roomData:{
-        roomName:'公共频道',
-        roomId:'000001',
-        roomNum:'000001',
+        roomName:'大厅',
+        roomId:'001',
+        roomNum:'001',
     },
     userData:{},
 }

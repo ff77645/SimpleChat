@@ -5,7 +5,7 @@ import SettingUserName from "./components/SettingUserName";
 import {GlobalContext} from './contexts/global'
 import ChatInput from './components/ChatInput'
 import {ChatContext} from './contexts/chat'
-import SettingUserHead from "./components/SettingUserHead";
+import SettingUserData from "./components/SettingUserData";
 import SendMusic from "./components/SendMusic";
 import CreateRoom from './components/CreateRoom'
 import JoinRoom from './components/JoinRoom'
@@ -14,7 +14,7 @@ import {io} from 'socket.io-client'
 
 const modals = {
   [actionType.SETTING_USER_NAME]:<SettingUserName/>,
-  [actionType.SETTING_HEAD]:<SettingUserHead/>,
+  [actionType.SETTING_USER_DATA]:<SettingUserData/>,
   [actionType.SEND_MUSIC]:<SendMusic/>,
   [actionType.CREATE_ROOM]:<CreateRoom/>,
   [actionType.JOIN_ROOM]:<JoinRoom/>,
@@ -50,7 +50,7 @@ function App() {
       date:new Date(),
     }
     socket.current.emit('message',{
-      roomid:'000001',
+      roomid:state.roomData.roomId,
       value,
     })
     setMsgList(list=>list.concat(value))
@@ -73,25 +73,34 @@ function App() {
       socket.current.off()
     }
   },[])
+
+  useEffect(()=>{
+    // console.log('update userData',state.userData);
+    
+  },[state.userData])
+
+
   
   // 消息监听滚动
   useEffect(() => {
-    scrollRef.current.scrollTo({
-      top: scrollRef.current.scrollHeight,
-      behavior: "smooth",
-    });
+    setTimeout(()=>{
+      scrollRef.current.scrollTo({
+        top: scrollRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    },100)
   }, [msgList]);
 
   return (
     <div className="h-screen bg-gray-200">
       <div className="h-[50px] bg-white flex flex-row items-center justify-between px-4">
-        <div>房号:123</div>
+        <div>房号:{state.roomData.roomNum}</div>
         <h2 
           // suppressContentEditableWarning
           // contentEditable={true} 
           className="text-xl font-[500]" 
         >
-          header
+          {state.roomData.roomName}
         </h2>
         <div>?</div>
       </div>

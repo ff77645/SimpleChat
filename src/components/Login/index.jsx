@@ -15,10 +15,6 @@ export default function Login(){
         dispatch('setModalName','')
     }
 
-    const handleKeyDown = e =>{
-        e.key === 'Escape' && onClose()
-    }
-
     const handleConfirm = async ()=>{
         if(!email || !password) return toast.error('请输入账号密码')
         const tid = toast.loading('正在登录')
@@ -29,6 +25,11 @@ export default function Login(){
         dispatch('setUserData',res.user)
         toast.success('登录成功')
         onClose()
+    }
+
+    const handleKeyDown = e =>{
+        e.key === 'Escape' && onClose()
+        e.key === 'Enter' && handleConfirm()
     }
 
     return (
