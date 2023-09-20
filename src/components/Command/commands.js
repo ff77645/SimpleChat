@@ -17,15 +17,15 @@ export const commands = [
     // 图片
     {
         keywords:'send 发送 image 图片',
-        rep:'发送: 图片',
-        rep_en:'Send: Image',
+        rep:'发送: 发送图片',
+        rep_en:'Send: Send Image',
         action:actionType.SEND_IMAGE,
     },
     // 音乐
     {
         keywords:'send 发送 music 音乐',
-        rep:'发送: 音乐',
-        rep_en:'Send: Music',
+        rep:'发送: 发送音乐',
+        rep_en:'Send: Send Music',
         action:actionType.SEND_MUSIC,
     },
     //房间
@@ -44,14 +44,14 @@ export const commands = [
     // 账号
     {
         keywords:'login 登录 account 账号 user 用户',
-        rep:'账号: 登录',
-        rep_en:'Account: Login',
+        rep:'账号: 账号登录',
+        rep_en:'Account: Account Login',
         action:actionType.Login,
     },
     {
         keywords:'setting 设置 account 账号 user 用户 head 头像 nikename 名字 昵称',
-        rep:'账号: 设置',
-        rep_en:'Account: Setting',
+        rep:'账号: 账号设置',
+        rep_en:'Account: Account Setting',
         action:actionType.SETTING_USER_DATA,
     },
 ]

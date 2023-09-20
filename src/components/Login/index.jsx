@@ -9,7 +9,7 @@ import toast from 'react-hot-toast'
 export default function Login(){
     const [_,dispatch] = useContext(GlobalContext)
     const [email,setEmail] = useState('tom2@qq.com')
-    const [password,setPassword] = useState('123456')
+    const [password,setPassword] = useState('654321')
 
     const onClose = ()=>{
         dispatch('setModalName','')

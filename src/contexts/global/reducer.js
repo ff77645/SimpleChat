@@ -10,6 +10,7 @@ export const initialState = {
         roomNum:'001',
     },
     userData:{},
+    oldRoomId:'',
 }
 
 
@@ -23,6 +24,7 @@ const methods = {
     setRoomData(state,value){
         return {
             ...state,
+            oldRoomId:state.roomData.roomId,
             roomData:value,
         }
     },

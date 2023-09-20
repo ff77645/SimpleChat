@@ -8,17 +8,19 @@ export default function SettingUserName(){
     const [inputValue,setInputValue] = useState('')
     const [_,dispatch] = useContext(GlobalContext)
 
-    const handleConfirm = async ()=>{
-        // console.log('handleConfirm');
-        if(!inputValue) return toast.error('请输入房间名称')
-        const res = await request.post('/room/create',{roomName:inputValue})
-        console.log({res});
-    }
-    
+
     const onClose = ()=>{
         dispatch('setModalName','')
     }
 
+    const handleConfirm = async ()=>{
+        if(!inputValue) return toast.error('请输入房间名称')
+        const res = await request.post('/room/create',{roomName:inputValue})
+        console.log({res});
+        dispatch('setRoomData',res.room)
+        onClose()
+    }
+    
     const handleKeyDown = e =>{
         e.key === 'Escape' && onClose()
         if(e.key !== 'Enter') return
@@ -41,7 +43,7 @@ export default function SettingUserName(){
                             <Button color="danger" variant="light" onPress={onClose}>
                                 取消
                             </Button>
-                            <Button color="primary" onPress={onClose}>
+                            <Button color="primary" onPress={handleConfirm}>
                                 确认
                             </Button>
                         </ModalFooter>

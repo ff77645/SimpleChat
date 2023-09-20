@@ -41,6 +41,9 @@ dependencies:
   socket.io-client:
     specifier: ^4.7.2
     version: 4.7.2
+  spark-md5:
+    specifier: ^3.0.2
+    version: 3.0.2
 
 devDependencies:
   '@tauri-apps/cli':

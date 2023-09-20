@@ -5,6 +5,7 @@ import {useSetUserHead} from './handles'
 import { actionType } from './type'
 import { ChatContext } from '../../contexts/chat'
 import {selectImage} from '@/helper'
+import {fileToBase64} from '../../utils'
 
 
 const useCommandState = ()=>{
@@ -56,18 +57,18 @@ function Command({value,onClose},ref){
     const target = useRef()
     const [state,dispatch] = useContext(GlobalContext)
     const sendMsg = useContext(ChatContext)
-    console.log({sendMsg});
     const {
         selectHeadImg
     } = useSetUserHead()
 
     const sendImage = async ()=>{
         const file = await selectImage()
+        // const b64 = await fileToBase64(file)
         sendMsg({
             type:'image',
-            value: URL.createObjectURL(file),
+            noSend:true,
+            value: file,
             avatar:'http://pic.yupoo.com/isfy666/ca92284b/96330991.jpeg',
-            name:'Tom',
         })
     }
 
@@ -81,8 +82,7 @@ function Command({value,onClose},ref){
         if(!cmd) return
         if(!state.userData.id) {
             dispatch('setModalName',actionType.Login)
-            onClose()
-            return
+            return onClose()
         }
         if(cmd.action === actionType.SETTING_HEAD){
             // selectHeadImg()

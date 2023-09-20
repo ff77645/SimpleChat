@@ -22,7 +22,7 @@ function ChatInput({onSend},ref){
             type:'text',
             value: inputValue,
         })
-        setInputValue("");
+        setInputValue("")
     }
 
     const handleInputChange = ({target:{value}}) => {
@@ -32,6 +32,7 @@ function ChatInput({onSend},ref){
 
     const onCommandClose = ()=>{
         setIsOpenCmd(false)
+        setInputValue('')
     }
 
     const handleKeyDown = (e) => {
@@ -57,8 +58,7 @@ function ChatInput({onSend},ref){
     return (
         <div className="h-[50px] flex-none relative w-1/2 mx-auto min-w-[500px]">
             { 
-                isOpenCmd ? 
-                    <Command ref={CommandRef} onClose={onCommandClose} value={inputValue} /> : 
+                isOpenCmd ? <Command ref={CommandRef} onClose={onCommandClose} value={inputValue} /> : 
                     isOpenEmoji ? <EmojiModal onClose={()=>setIsOpenEmoji(false)} onConfirm={emojiConfirm}/> : ''
             }
             <div className='h-full flex flex-row flex-nowrap items-center rounded-lg overflow-hidden bg-white'>
