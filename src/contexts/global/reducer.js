@@ -2,7 +2,7 @@
 
 
 export const initialState = {
-    modalName:'SEND_MUSIC',
+    modalName:'',
     selectedHeadFile:'',
     roomData:{
         roomName:'大厅',

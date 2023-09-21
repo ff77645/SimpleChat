@@ -12,6 +12,7 @@ import JoinRoom from './components/JoinRoom'
 import Login from './components/Login'
 import {io} from 'socket.io-client'
 import {mergeChunksForArrayBuffer} from './utils'
+import Music from "./plugin/music";
 
 const modals = {
   [actionType.SETTING_USER_NAME]:<SettingUserName/>,
@@ -32,7 +33,8 @@ const initSocket = ()=>{
 }
 
 const chunkMap = {}
-
+const music = new Music()
+console.log({music});
 function App() {
   const [msgList, setMsgList] = useState([]);
   const [state,dispatch] = useContext(GlobalContext)

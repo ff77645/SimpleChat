@@ -1,6 +1,7 @@
 import {Howl} from 'howler'
 
 
+let handles = []
 class Music {
     static instance
     constructor(){
@@ -8,9 +9,9 @@ class Music {
         // 音乐列表
         this.songList = []
         // 正在播放音乐索引
-        this.playSongIndex = 0
+        this.currentSongIndex = 0
         // 正在播放的音乐
-        this.playSong = ''
+        this.currentSong = ''
         // 当前Howl 实例 
         this.sound = ''
         Music.instance = this
@@ -24,40 +25,48 @@ class Music {
         this.songList.push(song)
     }
 
-    play(songId){
-        if(songId){
-            this.playSongIndex = this.songList.findIndex(i=>i.id === songId)
+    playSong(song){
+        if(!song){
+            this.currentSong = this.songList[this.currentSongIndex]
+        }else{
+            this.currentSong = song
         }
-        this.playSong = this.songList[this.playSongIndex]
-        if(!this.playSong) return
+        if(!this.currentSong) return
+        this.sound && this.sound.unload()
+        const src = this.currentSong.source.map(i=>i.url)
         this.sound = new Howl({
-            src:[],
+            src,
+            html5:true,
+            autoplay:true,
         })
-        this.sound.onload = this.onload
-        this.sound.onend = this.onend
+
+        this.sound.onend = this.nextSong
+
+        if(!handles.length) handles = Object.keys(Object.getPrototypeOf(this.sound))
+        for(let key of handles){
+            if(!this.hasOwnProperty(key)){
+                this[key] = handles[key]
+            }
+        }
     }
 
     previousSong(){
-        if(this.playSongIndex === 0) return
-        this.playSongIndex--
+        console.log('Music previousSong',this.currentSongIndex)
+        if(this.currentSongIndex === 0) return
+        this.currentSongIndex--
         this.play()
     }
 
     nextSong(){
-        if(this.playSongIndex === this.songList.length - 1) return 
-        this.playSongIndex++
+        console.log('Music nextSong',this.currentSongIndex)
+        if(this.currentSongIndex === this.songList.length - 1) return 
+        this.currentSongIndex++
         this.play()
     }
 
-    playing(){
-        return this.sound
-    }
-
-    onload(){
-
-    }
-
-    onend(){
-        this.nextSong()
+    playingSong(){
+        return this.currentSong
     }
 }
+
+export default Music
