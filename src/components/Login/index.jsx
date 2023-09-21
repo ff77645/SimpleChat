@@ -3,7 +3,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import {GlobalContext} from '../../contexts/global'
 import request from '../../utils/request'
 import toast from 'react-hot-toast'
-
+import {ASSET_PREFIX} from '../../config/config'
 
 
 export default function Login(){
@@ -22,6 +22,10 @@ export default function Login(){
         toast.dismiss(tid)
         console.log({res});
         if(!res.success) return toast.error(res.msg)
+        const avatar = res.user.avatar
+        if(avatar && !avatar.startsWith('http')){
+            res.user.avatar = ASSET_PREFIX + avatar
+        }
         dispatch('setUserData',res.user)
         toast.success('登录成功')
         onClose()

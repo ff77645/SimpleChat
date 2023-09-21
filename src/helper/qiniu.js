@@ -24,16 +24,23 @@ export function generateUploadToken(options) {
 export const uploadFile = (file,name,putExtra={},config={})=>{
     const token = generateUploadToken(cfg_qiniu)
     const observable = upload(file, name, token, putExtra, config)
+    let resolve,reject
     observable.subscribe({
-      next(res){
-        console.log('next',res)
-      },
+      // next(res){
+      //   console.log('next',res)
+      // },
       error(err){
-        console.log('err0r',err)
+        // console.log('err0r',err)
+        reject(err)
       },
       complete(res){
-        console.log('complete',res)
+        // console.log('complete',res)
+        resolve(res)
       }
+    })
+    return new Promise((res,rej)=>{
+      resolve = res
+      reject = rej
     })
 }
 

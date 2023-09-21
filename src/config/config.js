@@ -1,0 +1,1 @@
+export const ASSET_PREFIX = 'http://files.summer9.cn/'

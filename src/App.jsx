@@ -73,6 +73,9 @@ function App() {
       roomid:state.roomData.roomId,
       value,
     })
+    if(msg.type === 'music') {
+      dispatch('setCurrentPlayMusicId',state.roomMusicList.concat(msg))
+    }
   }
 
   useEffect(()=>{

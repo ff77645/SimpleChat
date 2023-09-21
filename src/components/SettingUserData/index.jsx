@@ -16,6 +16,8 @@ import {AiOutlineCloudUpload} from 'react-icons/ai'
 import {selectImage} from '../../helper'
 import request from "../../utils/request";
 import toast from 'react-hot-toast'
+import {uploadFile} from '../../helper/qiniu'
+import dayjs from "dayjs";
 
 const genders = [
   {
@@ -31,18 +33,20 @@ const genders = [
     value: '0',
   },
 ];
+let userHead
 
 export default function SettingUserData() {
   const [state, dispatch] = useContext(GlobalContext);
   const [nickname,setNickname] = useState(state.userData.nickname)
   const [gender,setGender] = useState(state.userData.gender + '')
   const [userAvatar,setUserAvatar] = useState('')
-  //   const userHead = URL.createObjectURL(state.selectedHeadFile);
-  console.log('userData',state.userData);
+
   const onClose = () => {
     dispatch("setModalName", "");
-    // URL.revokeObjectURL(userHead);
     dispatch("setSelectedHeadFile", "");
+    if(userAvatar.startsWith('blob:')){
+      URL.revokeObjectURL(userAvatar)
+    }
   };
 
   const handleConfirm = async () => {
@@ -54,7 +58,9 @@ export default function SettingUserData() {
         nickname,
     }
     if(userAvatar) {
-        data.avatar = userAvatar
+      const name = `user-image/user_head_${state.userData.id}_${dayjs().format('YYMMDDHHmmss')}`
+      const res = await uploadFile(userHead,name)
+      data.avatar = res.key
     }
     const res = await request.post('/auth/update-user-data',data)
     toast.dismiss(tid)
@@ -70,6 +76,7 @@ export default function SettingUserData() {
 
   const clickAvatar = async ()=>{
     const file = await selectImage()
+    userHead = file
     setUserAvatar(URL.createObjectURL(file))
   }
 

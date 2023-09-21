@@ -39,13 +39,14 @@ export default function SendMusic(){
         if(!musicIndex) return 
         const music = musicList[musicIndex]
         if(!music) return
+        const value = {
+            name:music.name,
+            songer:music.ar[0].name
+        }
         sendMsg({
             type:'music',
-            value: music,
-            avatar:'http://pic.yupoo.com/isfy666/ca92284b/96330991.jpeg',
-            name:'Tom',
+            value,
         })
-        
     }
     return (
         <Modal 
