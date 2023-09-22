@@ -25,12 +25,12 @@ const useCommandState = ()=>{
     }
 
     const arrowUp = () =>{
-        if(currentIndex <= 0) return 
+        if(currentIndex <= 0) return setCurrentIndex(cmdList.length - 1)
         setCurrentIndex(currentIndex-1)
     }
 
     const arrowDown = ()=>{
-        if(currentIndex >= cmdList.length - 1) return
+        if(currentIndex >= cmdList.length - 1) return setCurrentIndex(0)
         setCurrentIndex(currentIndex+1)
     }
 

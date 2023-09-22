@@ -13,28 +13,30 @@ import { ImArrowLeft2, ImArrowRight2 } from "react-icons/im";
 import { BsFillPauseCircleFill,BsFillPlayCircleFill } from "react-icons/bs";
 import { PiShuffleAngular } from "react-icons/pi";
 import { GlobalContext } from "../../contexts/global";
+import Musics from "../../plugin/music";
 
 export default function Music({ data, align }) {
   const [state,dispatch] = useContext(GlobalContext)
   const [liked, setLiked] = useState(false);
-
+  const musicHandler = Musics.getInstance()
+  console.log('Music update',data.value.name);
   const handlePlay = ()=>{
+    console.log({musicHandler});
+    musicHandler.playSong(data.value)
     dispatch('setCurrentPlayMusicId',data.value.id)
   }
 
   const handleNext = ()=>{
-    const index = state.roomMusicList.findLastIndex(i=>i.id === data.value.id)
-    if(index === state.roomMusicList.length - 1) return 
-    dispatch('setCurrentPlayMusicId',state.roomMusicList[index+1].id)
+    musicHandler.nextSong()
+    dispatch('setCurrentPlayMusicId',musicHandler.song.id)
   }
 
   const handlePre = ()=>{
-    const index = state.roomMusicList.findLastIndex(i=>i.id === data.value.id)
-    if(index === 0) return 
-    dispatch('setCurrentPlayMusicId',state.roomMusicList[index-1].id)
+    musicHandler.previousSong()
+    dispatch('setCurrentPlayMusicId',musicHandler.song.id)
   }
 
-  const isPlay = state.currentPlayMusicId = data.value.id
+  const isPlay = state.currentPlayMusicId === data.value.id
 
   return (
     <div
@@ -53,7 +55,7 @@ export default function Music({ data, align }) {
         <div className="rounded p-2 text-black mt-2 inline-block min-h-[40px]">
           <Card
             isBlurred
-            className="border-none bg-background/60 dark:bg-default-100/50 max-w-[500px]"
+            className="border-none bg-background/60 dark:bg-default-100/50 max-w-[430px]"
             shadow="sm"
           >
             <CardBody>
@@ -62,22 +64,22 @@ export default function Music({ data, align }) {
                   <Image
                     alt="Album cover"
                     className="object-cover"
-                    height={200}
-                    width={200}
+                    height={150}
+                    width={150}
                     shadow="md"
-                    src="https://nextui.org/images/album-cover.png"
+                    src={data.value.picUrl}
                   />
                 </div>
 
-                <div className="flex flex-col col-span-6 md:col-span-8">
+                <div className="flex flex-col col-span-6 md:col-span-8 h-full justify-around">
                   <div className="flex justify-between items-start">
                     <div className="flex flex-col gap-0">
                       <h3 className="font-semibold text-foreground/90">
-                        Daily Mix
+                        {data.value.name}
                       </h3>
-                      <p className="text-small text-foreground/80">12 Tracks</p>
+                      {/* <p className="text-small text-foreground/80">{state.roomMusicList.length} 首音乐</p> */}
                       <h1 className="text-large font-medium mt-2">
-                        Frontend Radio
+                        {data.value.songer}
                       </h1>
                     </div>
                     <Button
@@ -97,7 +99,7 @@ export default function Music({ data, align }) {
                     </Button>
                   </div>
 
-                  <div className="flex flex-col mt-3 gap-1">
+                  {/* <div className="flex flex-col mt-3 gap-1">
                     <Progress
                       aria-label="Music progress"
                       classNames={{
@@ -112,9 +114,9 @@ export default function Music({ data, align }) {
                       <p className="text-small">1:23</p>
                       <p className="text-small text-foreground/50">4:32</p>
                     </div>
-                  </div>
+                  </div> */}
 
-                  <div className="flex w-full items-center justify-center gap-4">
+                  <div className="flex w-full items-center justify-end gap-4">
                     {/* <Button
                       isIconOnly
                       className="data-[hover]:bg-foreground/10"
@@ -123,7 +125,7 @@ export default function Music({ data, align }) {
                     >
                       <RiRepeatOneFill className="text-xl text-foreground/80" />
                     </Button> */}
-                    <Button
+                    {/* <Button
                       isIconOnly
                       className="data-[hover]:bg-foreground/10"
                       radius="full"
@@ -131,7 +133,7 @@ export default function Music({ data, align }) {
                       onClick={handlePre}
                     >
                       <ImArrowLeft2 className="text-xl" />
-                    </Button>
+                    </Button> */}
                     <Button
                       isIconOnly
                       className="w-auto h-auto data-[hover]:bg-foreground/10"
@@ -143,7 +145,7 @@ export default function Music({ data, align }) {
                             isPlay ? <BsFillPauseCircleFill size={35} /> : <BsFillPlayCircleFill size={35} />
                         }
                     </Button>
-                    <Button
+                    {/* <Button
                       isIconOnly
                       className="data-[hover]:bg-foreground/10"
                       radius="full"
@@ -151,7 +153,7 @@ export default function Music({ data, align }) {
                       onClick={handleNext}
                     >
                       <ImArrowRight2 className="text-xl" />
-                    </Button>
+                    </Button> */}
                     {/* <Button
                       isIconOnly
                       className="data-[hover]:bg-foreground/10"

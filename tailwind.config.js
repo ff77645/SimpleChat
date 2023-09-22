@@ -9,7 +9,21 @@ export default {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      animation:{
+        'height-stretch':'stretch .15s linear',
+      },
+      keyframes:{
+        stretch:{
+          '0%':{
+            transform:'translateY(-100%)'
+          },
+          '100%':{
+            transform:'translateY(0)'
+          }
+        }
+      }
+    },
   },
   plugins: [],
   darkMode: "class",

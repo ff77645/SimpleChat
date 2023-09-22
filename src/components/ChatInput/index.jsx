@@ -19,8 +19,7 @@ function ChatInput({onSend},ref){
     const handleKeyEnter = ()=>{
         if(isOpenCmd) return CommandRef.current.enter()
         onSend({ 
-            // type:'text',
-            type:'music',
+            type:'text',
             value: inputValue,
         })
         setInputValue("")

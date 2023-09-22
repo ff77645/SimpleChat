@@ -12,17 +12,10 @@ export const initialState = {
     userData:{},
     oldRoomId:'',
     currentPlayMusicId:'',
-    roomMusicList:[],
 }
 
 
 const methods = {
-    setRoomMusicList(state,value){
-        return {
-            ...state,
-            roomMusicList:value,
-        }
-    },
     setCurrentPlayMusicId(state,value){
         return {
             ...state,

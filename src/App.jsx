@@ -13,6 +13,7 @@ import Login from './components/Login'
 import {io} from 'socket.io-client'
 import {mergeChunksForArrayBuffer} from './utils'
 import Music from "./plugin/music";
+import ChatHeader from "./components/ChatHeader";
 
 const modals = {
   [actionType.SETTING_USER_NAME]:<SettingUserName/>,
@@ -33,15 +34,14 @@ const initSocket = ()=>{
 }
 
 const chunkMap = {}
-const music = new Music()
-console.log({music});
+const musicHandler = new Music()
 function App() {
   const [msgList, setMsgList] = useState([]);
   const [state,dispatch] = useContext(GlobalContext)
   const scrollRef = useRef(null);
   const socket = useRef()
 
-
+  console.log('update App.js');
   const receiveImageChunk = msg =>{
     const chunk = msg.value
     console.log('接收',chunk);
@@ -76,7 +76,7 @@ function App() {
       value,
     })
     if(msg.type === 'music') {
-      dispatch('setCurrentPlayMusicId',state.roomMusicList.concat(msg))
+      musicHandler.addSong(msg.value)
     }
   }
 
@@ -85,6 +85,7 @@ function App() {
 
     handler.on('message',data=>{
       if(data.type === 'image_chunk') return receiveImageChunk(data)
+      if(data.type === 'music') musicHandler.addSong(data.value)
       setMsgList(list=>list.concat(data))
     })
     
@@ -119,17 +120,7 @@ function App() {
 
   return (
     <div className="h-screen bg-gray-200">
-      <div className="h-[50px] bg-white flex flex-row items-center justify-between px-4">
-        <div>房号:{state.roomData.roomNum}</div>
-        <h2 
-          // suppressContentEditableWarning
-          // contentEditable={true} 
-          className="text-xl font-[500]" 
-        >
-          {state.roomData.roomName}
-        </h2>
-        <div>?</div>
-      </div>
+      <ChatHeader/>
       <ChatContext.Provider value={sendMsg}>
         <div className="relative" style={{height:'calc(100vh - 100px)'}}>
           <div ref={scrollRef} className="overflow-y-auto h-full">
