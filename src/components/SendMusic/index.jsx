@@ -9,7 +9,8 @@ import Loading from "../Loading";
 
 const request = async path =>{
     // &realIP=116.25.146.177
-    const res = await axios.get(`https://music.summer9.cn${path}`)
+    // https://music.summer9.cn
+    const res = await axios.get(`https://netease-cloud-music-api-ecru-gamma-37.vercel.app${path}`)
     return res.data
 }
 
@@ -115,7 +116,7 @@ export default function SendMusic(){
         if(!musicIndex) return 
         const music = musicList[musicIndex]
         if(!music) return
-        setLoadingLabel('资源检查')
+        setLoadingLabel('检查资源')
         setIsLoading(true)
         const res = await request(`/check/music?id=${music.id}`)
         if(!res.success) {

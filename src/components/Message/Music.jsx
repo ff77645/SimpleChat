@@ -6,7 +6,7 @@ import {
   Button,
   Progress,
 } from "@nextui-org/react";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { RiRepeatOneFill } from "react-icons/ri";
 import { ImArrowLeft2, ImArrowRight2 } from "react-icons/im";
@@ -14,16 +14,49 @@ import { BsFillPauseCircleFill,BsFillPlayCircleFill } from "react-icons/bs";
 import { PiShuffleAngular } from "react-icons/pi";
 import { GlobalContext } from "../../contexts/global";
 import Musics from "../../plugin/music";
+import {Howler} from 'howler'
 
 export default function Music({ data, align }) {
   const [state,dispatch] = useContext(GlobalContext)
   const [liked, setLiked] = useState(false);
   const musicHandler = Musics.getInstance()
-  console.log('Music update',data.value.name);
+  // const isPlay = state.currentPlayMusicId === data.value.id
+  const [isPlay,setIsPlay] = useState(false)
+  const [isLoading,setIsLoading] = useState(false)
+  const soundRef = useRef()
+  const setPlay = bool => ()=>{
+    setIsPlay(bool)
+    setIsLoading(false)
+  }
+  const getSound = ()=>{
+    if(soundRef.current) return soundRef.current
+    console.log('初始化');
+    const {sound} = musicHandler.getSound(data.value)
+    sound.on('end',setPlay(false))
+    sound.on('stop',setPlay(false))
+    sound.on('pause',setPlay(false))
+    sound.on('play',setPlay(true))
+    sound.on('loaderror',setPlay(false))
+    sound.load()
+    soundRef.current = sound
+    return sound
+  }
+
   const handlePlay = ()=>{
-    console.log({musicHandler});
-    musicHandler.playSong(data.value)
-    dispatch('setCurrentPlayMusicId',data.value.id)
+    const sound = getSound()
+    if(isPlay){
+      sound.pause()
+      // console.log('pauser');
+      // musicHandler.sound.pause()
+      // dispatch('setCurrentPlayMusicId','')
+    }else{
+      setIsLoading(true)
+      const playingSong = musicHandler.playingSong()
+      if(playingSong && playingSong.id !== data.value.id) Howler.stop()
+      sound.play()
+      // musicHandler.playSong(data.value)
+      // dispatch('setCurrentPlayMusicId',data.value.id)
+    }
   }
 
   const handleNext = ()=>{
@@ -36,7 +69,6 @@ export default function Music({ data, align }) {
     dispatch('setCurrentPlayMusicId',musicHandler.song.id)
   }
 
-  const isPlay = state.currentPlayMusicId === data.value.id
 
   return (
     <div
@@ -67,6 +99,7 @@ export default function Music({ data, align }) {
                     height={150}
                     width={150}
                     shadow="md"
+                    isZoomed
                     src={data.value.picUrl}
                   />
                 </div>
@@ -136,6 +169,7 @@ export default function Music({ data, align }) {
                     </Button> */}
                     <Button
                       isIconOnly
+                      isLoading={isLoading}
                       className="w-auto h-auto data-[hover]:bg-foreground/10"
                       radius="full"
                       variant="light"

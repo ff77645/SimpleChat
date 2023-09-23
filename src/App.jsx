@@ -14,7 +14,7 @@ import {io} from 'socket.io-client'
 import {mergeChunksForArrayBuffer} from './utils'
 import Music from "./plugin/music";
 import ChatHeader from "./components/ChatHeader";
-
+import {list} from '../songs.js'
 const modals = {
   [actionType.SETTING_USER_NAME]:<SettingUserName/>,
   [actionType.SETTING_USER_DATA]:<SettingUserData/>,
@@ -41,7 +41,6 @@ function App() {
   const scrollRef = useRef(null);
   const socket = useRef()
 
-  console.log('update App.js');
   const receiveImageChunk = msg =>{
     const chunk = msg.value
     console.log('接收',chunk);
@@ -59,8 +58,18 @@ function App() {
     }
   }
 
+  const addSong = msg =>{
+    musicHandler.addSong({
+      ...msg.value,
+      userId:msg.userId,
+      avatar:msg.avatar,
+      nickname:msg.nickname,
+      date:msg.date,
+    })
+  }
+
   const sendMsg = msg =>{
-    if(state.userData.id === undefined) return dispatch('setModalName',actionType.Login)
+    // if(state.userData.id === undefined) return dispatch('setModalName',actionType.Login)
     const value = {
       ...msg,
       userId:state.userData.id,
@@ -76,7 +85,7 @@ function App() {
       value,
     })
     if(msg.type === 'music') {
-      musicHandler.addSong(msg.value)
+      addSong(value)
     }
   }
 
@@ -85,7 +94,7 @@ function App() {
 
     handler.on('message',data=>{
       if(data.type === 'image_chunk') return receiveImageChunk(data)
-      if(data.type === 'music') musicHandler.addSong(data.value)
+      if(data.type === 'music') addSong(data)
       setMsgList(list=>list.concat(data))
     })
     
@@ -95,6 +104,12 @@ function App() {
     })
 
     socket.current = handler
+    list.forEach(value=>{
+      sendMsg({
+        type:'music',
+        value
+      })
+    })
     return ()=>{
       socket.current.off()
     }

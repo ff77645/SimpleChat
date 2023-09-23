@@ -1,6 +1,5 @@
 import {Howl} from 'howler'
 
-
 let methods = []
 const events = ['load', 'loaderror', 'playerror', 'play', 'end', 'pause', 'stop', 'mute', 'volume', 'rate', 'seek', 'fade', 'unlock']
 class Music {
@@ -24,19 +23,57 @@ class Music {
     }
 
     addSong(song){
+        // const src = song.source.map(i=>i.url)
+        // const options = {
+        //     src,
+        //     autoplay:true,
+        //     preload:false,
+        // }
+        
+        // for(let event of events){
+        //     const et = `on${event}`
+        //     if(this[et] && this[et] instanceof Function){
+        //         options[et] = this[et].bind(this,song)
+        //     }
+        // }
+
+        // const sound = new Howl(options)
+        // this.songList.push({
+        //     ...song,
+        //     sound,
+        // })
         this.songList.push(song)
-        console.log('添加歌曲:',song,this.songList);
+        console.log(this.songList);
+    }
+
+    getSound(song){
+        const songindex = this.songList.findIndex(i=>i.id === song.id)
+        const _song = this.songList[songindex]
+        if(_song.sound) return _song
+        const src = _song.source.map(i=>i.url)
+        const options = {
+            src,
+            autoplay:true,
+            preload:false,
+        }
+        
+        for(let event of events){
+            const et = `on${event}`
+            if(this[et] && this[et] instanceof Function){
+                options[et] = this[et].bind(this,song)
+            }
+        }
+        const sound = new Howl(options)
+        _song.sound = sound
+        return _song
+        // return this.songList.find(i=>i.id === song.id)
     }
 
     playSong(song){
-        if(!song){
-            this.song = this.songList[this.songIndex]
-        }else{
-            this.song = song
-            this.songIndex = this.songList.findIndex(i=>i.id === song.id)
-        }
-        if(!this.song) return
+        console.log('playSong',this.song,song);
+        if(this.song.id === song.id && this.sound) return this.sound.play()
         this.sound && this.sound.unload()
+        this.song = song
         const src = this.song.source.map(i=>i.url)
         this.sound = new Howl({
             src,
@@ -51,14 +88,14 @@ class Music {
         // 绑定方法
         for(let method of methods){
             if(!this.hasOwnProperty(method)){
-                this[method] = this.sound[method]
+                this[method] = this.sound[method].bind(this.sound)
             }
         }
         // 绑定事件
         for(let event of events){
             const et = `on${event}`
             if(this[et] && this[et] instanceof Function){
-                this.sound.on(event,this[et])
+                this.sound.on(event,this[et].bind(this))
             }
         }
     }
@@ -68,7 +105,7 @@ class Music {
         console.log({songList:this.songList});
         if(this.songIndex === 0) return
         this.songIndex--
-        this.playSong()
+        this.playSong(this.songList[this.songIndex])
     }
 
     nextSong(){
@@ -76,24 +113,25 @@ class Music {
         console.log({songList:this.songList});
         if(this.songIndex === this.songList.length - 1) return 
         this.songIndex++
-        this.playSong()
+        this.playSong(this.songList[this.songIndex])
     }
 
     playingSong(){
         return this.song
     }
 
-    onload(){
-        console.log('加载成功');
+    onload(song){
+        console.log('加载成功',song.name);
     }
-    onloaderror(){
-        console.log('加载失败');
+    onloaderror(song){
+        console.log('加载失败',song.name);
     }
-    onplayerror(){
-        console.log('播放错误');
+    onplayerror(song){
+        console.log('播放错误',song.name);
     }
-    onplay(){
-        console.log('播放开始');
+    onplay(song){
+        this.song = song
+        console.log('播放开始',song.name);
     }
     onend(){
         console.log('播放完毕');
@@ -102,8 +140,8 @@ class Music {
     onpause(){
         console.log('播放暂停');
     }
-    onstop(){
-        console.log('播放停止');
+    onstop(song){
+        console.log('播放停止',song.name);
     }
 }
 

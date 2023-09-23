@@ -3,15 +3,12 @@ import {Listbox,ListboxItem} from '@nextui-org/react'
 import {HiOutlinePlay} from 'react-icons/hi'
 import { ImArrowLeft2, ImArrowRight2 } from "react-icons/im";
 import { BsFillPauseCircleFill,BsFillPlayCircleFill } from "react-icons/bs";
+import Music from '../../plugin/music';
 
 
 export default function SongList(){
-
-    const songList = Array.from({length:10}).fill({
-        name:'爱',
-        songer:'小虎队',
-        time:'3:45',
-    })
+    const musicHandler = Music.getInstance()
+    const songList = Array.from(musicHandler.songList)
 
     return (
         <div 
