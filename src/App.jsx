@@ -14,7 +14,6 @@ import {io} from 'socket.io-client'
 import {mergeChunksForArrayBuffer} from './utils'
 import Music from "./plugin/music";
 import ChatHeader from "./components/ChatHeader";
-import {list} from '../songs.js'
 const modals = {
   [actionType.SETTING_USER_NAME]:<SettingUserName/>,
   [actionType.SETTING_USER_DATA]:<SettingUserData/>,
@@ -104,12 +103,12 @@ function App() {
     })
 
     socket.current = handler
-    list.forEach(value=>{
-      sendMsg({
-        type:'music',
-        value
-      })
-    })
+    // list.forEach(value=>{
+    //   sendMsg({
+    //     type:'music',
+    //     value
+    //   })
+    // })
     return ()=>{
       socket.current.off()
     }

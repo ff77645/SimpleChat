@@ -80,10 +80,10 @@ function Command({value,onClose},ref){
         setCurrentIndex(index)
         const cmd = cmdList[index]
         if(!cmd) return
-        if(!state.userData.id) {
-            dispatch('setModalName',actionType.Login)
-            return onClose()
-        }
+        // if(!state.userData.id) {
+        //     dispatch('setModalName',actionType.Login)
+        //     return onClose()
+        // }
         if(cmd.action === actionType.SETTING_HEAD){
             // selectHeadImg()
             dispatch('setModalName',cmd.action)

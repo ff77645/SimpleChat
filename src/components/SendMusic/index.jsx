@@ -10,6 +10,8 @@ import Loading from "../Loading";
 const request = async path =>{
     // &realIP=116.25.146.177
     // https://music.summer9.cn
+    // https://netease-cloud-music-api-ecru-gamma-37.vercel.app
+    // http://localhost:4000
     const res = await axios.get(`https://netease-cloud-music-api-ecru-gamma-37.vercel.app${path}`)
     return res.data
 }
@@ -95,7 +97,7 @@ export default function SendMusic(){
         setIsLoading(true)
         const res = await request(`/cloudsearch?keywords=${inputValue}`)
         console.log({res});
-        setMusicList(res.result.songs)
+        setMusicList(res?.result?.songs)
         setIsLoading(false)
         // toast.dismiss(tid)
     }

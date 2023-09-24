@@ -13,8 +13,11 @@ const request = axios.create({
 // })
 
 request.interceptors.response.use(response=>response.data,error=>{
-    const msg = error?.response?.data 
-    return Promise.reject(msg || error.toStrin())
+    // const msg = error?.response?.data 
+    console.log({error});
+    return Promise.resolve({
+        success:false
+    })
 })
 
 

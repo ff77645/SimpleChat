@@ -6,7 +6,7 @@ import {
   Button,
   Progress,
 } from "@nextui-org/react";
-import { useContext, useRef, useState } from "react";
+import { useCallback, useContext, useEffect, useRef, useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { RiRepeatOneFill } from "react-icons/ri";
 import { ImArrowLeft2, ImArrowRight2 } from "react-icons/im";
@@ -30,6 +30,7 @@ export default function Music({ data, align }) {
   }
   const getSound = ()=>{
     if(soundRef.current) return soundRef.current
+    setIsLoading(true)
     console.log('初始化');
     const {sound} = musicHandler.getSound(data.value)
     sound.on('end',setPlay(false))
@@ -50,7 +51,6 @@ export default function Music({ data, align }) {
       // musicHandler.sound.pause()
       // dispatch('setCurrentPlayMusicId','')
     }else{
-      setIsLoading(true)
       const playingSong = musicHandler.playingSong()
       if(playingSong && playingSong.id !== data.value.id) Howler.stop()
       sound.play()
@@ -68,6 +68,17 @@ export default function Music({ data, align }) {
     musicHandler.previousSong()
     dispatch('setCurrentPlayMusicId',musicHandler.song.id)
   }
+  const songChange = useCallback((song)=>{
+    if(song.id !== data.value.id) return
+    handlePlay()
+  },[])
+
+  useEffect(()=>{
+    musicHandler.on('change',songChange)
+    return ()=>{
+      musicHandler.off('change',songChange)
+    }
+  },[])
 
 
   return (
