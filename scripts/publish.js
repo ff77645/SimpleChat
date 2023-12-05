@@ -3,28 +3,34 @@ import FormData from 'form-data'
 import path from 'path'
 import { fileURLToPath } from 'url';
 
-function uploadFolder(folderPath,url){
-  const form = new FormData()
-  const files = fs.readdirSync(folderPath)
-  files.forEach(file => {
-    const p = folderPath + '/' + file
-    if(file === 'assets' ) return 
-    console.log(p);
-    form.append('files', fs.createReadStream(p),file)
-  })
-  // console.log({form});
+async function uploadFolder(folderPath,url){
+
+  const data = await readFile(folderPath + '/index.html')
+  url = url + '?path=html/index.html'
   return fetch(url, {
-    // headers:{
-    //   'Content-Type':'multipart/form-data'
-    // },
+    headers:{
+      // 'Content-Type':'multipart/form-data;boundary=files'
+      // 'Content-Type':'application/x-www-form-urlencoded'
+      'Content-Type':'application/octet-stream'
+    },
     method: 'POST',
-    body: form
+    body: data
+  })
+}
+
+// node将文件读取为arrayBuffer
+function readFile(filePath){
+  return new Promise((resolve,reject) => {
+    fs.readFile(filePath, (err, data) => {
+      if(err) reject(err)
+      resolve(data)
+    })
   })
 }
 
 const folderPath = path.join(path.resolve(),'dist')
-const url = 'http://127.0.0.1:8787/api/chat/release'
+const url = 'http://localhost:8787/api/chat/release'
 
 uploadFolder(folderPath,url)
-.then(res => res.text())
+.then(res => res.json())
 .then(text => console.log(text))
