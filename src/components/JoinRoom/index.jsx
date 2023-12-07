@@ -1,8 +1,8 @@
 import { Modal,ModalContent,ModalHeader,ModalBody,ModalFooter,Button,Input} from "@nextui-org/react";
 import { useContext, useEffect, useRef, useState } from "react";
 import {GlobalContext} from '../../contexts/global'
-import request from "../../utils/request";
 import toast from "react-hot-toast";
+import {joinRoom} from '../../api'
 
 
 export default function SettingUserName(){
@@ -14,7 +14,7 @@ export default function SettingUserName(){
     }
 
     const handleConfirm = async ()=>{
-        const res = await request.post('/room/join',{roomNum:inputValue})
+        const res = await joinRoom({roomNum:inputValue})
         if(!res.success) return toast.error(res.msg)
         toast.success('加入成功')
         dispatch('setRoomData',res.room)

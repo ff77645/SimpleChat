@@ -14,10 +14,12 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { GlobalContext } from "../../contexts/global";
 import {AiOutlineCloudUpload} from 'react-icons/ai'
 import {selectImage} from '../../helper'
-import request from "../../utils/request";
 import toast from 'react-hot-toast'
 import {uploadFile} from '../../helper/qiniu'
 import dayjs from "dayjs";
+import {updateUserData} from '../../api/index'
+import {ASSET_PREFIX} from '../../config/config'
+
 
 const genders = [
   {
@@ -60,9 +62,9 @@ export default function SettingUserData() {
     if(userAvatar) {
       const name = `user-image/user_head_${state.userData.id}_${dayjs().format('YYMMDDHHmmss')}`
       const res = await uploadFile(userHead,name)
-      data.avatar = res.key
+      data.avatar = ASSET_PREFIX + res.key
     }
-    const res = await request.post('/auth/update-user-data',data)
+    const res = await updateUserData(data)
     toast.dismiss(tid)
     if(!res.success) return toast.error(res.msg || '修改失败')
     toast.success('修改成功')

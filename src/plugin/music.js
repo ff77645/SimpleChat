@@ -7,54 +7,7 @@ class Music {
     constructor(){
         if(Music.instance) return Music.instance
         // 音乐列表
-        this.songList = [
-            {
-                "name": "小苹果",
-                "id": 1848183029,
-                "songer": "呼禾",
-                "time": 211012,
-                "source": [
-                    {
-                        "level": "exhigh",
-                        "type": "mp3",
-                        "url": "http://m801.music.126.net/20230924023406/a23a32a79c71783d614271e09bbfa3de/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/9173996444/5a98/7fdf/2019/d676ab0182719aef273db365daade921.mp3",
-                        "size": 8442819,
-                        "id": 1848183029
-                    },
-                    {
-                        "url": "https://music.163.com/song/media/outer/url?id=1848183029.mp3",
-                        "type": "mp3"
-                    }
-                ],
-                "picUrl": "http://p1.music.126.net/EhyM-E28jiDyohb8Pa8qaQ==/109951166035069093.jpg",
-                "userId": 1,
-                "avatar": "http://files.summer9.cn/blob:http://localhost:1420/8a085e41-4167-494f-b2e7-e9457317e3b8",
-                "nickname": "哈哈哈哈哈",
-                "date": "2023-09-23T18:09:06.559Z"
-            },
-            {
-                "name": "爱",
-                "id": 31877581,
-                "songer": "黄丽玲",
-                "time": 252995,
-                "source": [
-                    {
-                        "level": "standard",
-                        "type": "mp3",
-                        "url": "http://m701.music.126.net/20230924200506/4c1d891a32bc958d8336f93910fd0711/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/28481999939/aeff/3063/6826/80471ccd1ae56898e9cdbc3513549638.mp3",
-                        "size": 4049232,
-                        "id": 31877581
-                    },
-                    {
-                        "url": "https://music.163.com/song/media/outer/url?id=31877581.mp3",
-                        "type": "mp3"
-                    }
-                ],
-                "picUrl": "http://p1.music.126.net/moyoIrBy3ZIRdQAB6TvqqA==/7894493488261733.jpg",
-                "avatar": "http://pic.yupoo.com/isfy666/ca92284b/96330991.jpeg",
-                "date": "2023-09-24T11:40:07.054Z"
-            }
-        ]
+        this.songList = []
         // 正在播放音乐索引
         this.songIndex = 0
         // 正在播放的音乐

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState,useContext } from "react";
 import Message from "./components/Message";
 import {actionType} from './components/Command/type'
-import SettingUserName from "./components/SettingUserName";
+// import SettingUserName from "./components/SettingUserName";
 import {GlobalContext} from './contexts/global'
 import ChatInput from './components/ChatInput'
 import {ChatContext} from './contexts/chat'
@@ -14,8 +14,10 @@ import {io} from 'socket.io-client'
 import {mergeChunksForArrayBuffer} from './utils'
 import Music from "./plugin/music";
 import ChatHeader from "./components/ChatHeader";
+import {getUserInfo} from './api/index'
+import toast from 'react-hot-toast'
+
 const modals = {
-  [actionType.SETTING_USER_NAME]:<SettingUserName/>,
   [actionType.SETTING_USER_DATA]:<SettingUserData/>,
   [actionType.SEND_MUSIC]:<SendMusic/>,
   [actionType.CREATE_ROOM]:<CreateRoom/>,
@@ -90,7 +92,16 @@ function App() {
 
   useEffect(()=>{
     const handler = initSocket()
-
+    state.token && getUserInfo({
+      token:state.token,
+    }).then(res=>{
+      console.log({res});
+      if(!res.success) return
+      dispatch('setUserData',res.data)
+      dispatch('setToken',res.token)
+      localStorage.setItem('token',res.token)
+      toast.success('登录成功')
+    })
     handler.on('message',data=>{
       if(data.type === 'image_chunk') return receiveImageChunk(data)
       if(data.type === 'music') addSong(data)
@@ -103,12 +114,6 @@ function App() {
     })
 
     socket.current = handler
-    // list.forEach(value=>{
-    //   sendMsg({
-    //     type:'music',
-    //     value
-    //   })
-    // })
     return ()=>{
       socket.current.off()
     }
@@ -119,8 +124,6 @@ function App() {
     socket.current.emit('join-room',state.roomData.roomId)
     setMsgList([])
   },[state.roomData])
-
-
   
   // 消息监听滚动
   useEffect(() => {
@@ -133,7 +136,7 @@ function App() {
   }, [msgList]);
 
   return (
-    <div className="h-screen bg-gray-200">
+    <div className={`${state.theme} h-screen bg-gray-200`}>
       <ChatHeader/>
       <ChatContext.Provider value={sendMsg}>
         <div className="relative" style={{height:'calc(100vh - 100px)'}}>

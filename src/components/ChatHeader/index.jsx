@@ -7,13 +7,16 @@ import SongList from "../SongList"
 
 
 export default function ChatHeader(){
-    const [state] = useContext(GlobalContext)
+    const [state,dispatch] = useContext(GlobalContext)
     const musicHandler = Music.getInstance()
     const [showSongList,setShowSongList] = useState(false)
+    const toggleTheme = () => {
+        dispatch('setTheme',state.theme==='dark'?'':'dark')
+    }
 
     return (
         <>
-            <div className="h-[50px] bg-white flex flex-row items-center justify-between px-4">
+            <div className="h-[50px] bg-white dark:bg-black flex flex-row items-center justify-between px-4">
                 <div>房号:{state.roomData.roomNum}</div>
                 <div className="flex flex-row gap-4 items-center">
                     <h2 
@@ -21,12 +24,11 @@ export default function ChatHeader(){
                     >
                         {state.roomData.roomName}
                     </h2>
-                    <PiPlaylist onClick={()=>setShowSongList(!showSongList)} size={18}/>
+                    {/* <PiPlaylist onClick={()=>setShowSongList(!showSongList)} size={18}/> */}
                 </div>
-                <div>?</div>
+                <div onClick={toggleTheme} className="cursor-pointer">?</div>
             </div>
             {showSongList && <SongList/>}
-            
         </>
     )
 }

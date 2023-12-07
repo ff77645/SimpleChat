@@ -4,12 +4,13 @@ import {GlobalContext} from '../../contexts/global'
 import request from '../../utils/request'
 import toast from 'react-hot-toast'
 import {ASSET_PREFIX} from '../../config/config'
+import { login } from "../../api";
 
 
 export default function Login(){
     const [_,dispatch] = useContext(GlobalContext)
     const [email,setEmail] = useState('tom2@qq.com')
-    const [password,setPassword] = useState('123456')
+    const [password,setPassword] = useState('654321')
 
     const onClose = ()=>{
         dispatch('setModalName','')
@@ -18,7 +19,7 @@ export default function Login(){
     const handleConfirm = async ()=>{
         if(!email || !password) return toast.error('请输入账号密码')
         const tid = toast.loading('正在登录')
-        const res = await request.post('/auth/login',{email,password})
+        const res = await login({email,password})
         toast.dismiss(tid)
         console.log({res});
         if(!res.success) return toast.error(res.msg)
@@ -28,6 +29,8 @@ export default function Login(){
         }
         dispatch('setUserData',res.user)
         toast.success('登录成功')
+        dispatch('setToken',res.token)
+        localStorage.setItem('token',res.token)
         onClose()
     }
 

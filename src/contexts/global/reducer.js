@@ -1,5 +1,5 @@
 
-
+const token = localStorage.getItem('token')
 
 export const initialState = {
     modalName:'',
@@ -12,10 +12,24 @@ export const initialState = {
     userData:{},
     oldRoomId:'',
     currentPlayMusicId:'',
+    token,
+    theme:'',
 }
 
 
 const methods = {
+    setTheme(state,value){
+        return {
+           ...state,
+            theme:value,
+        }
+    },
+    setToken(state,value){
+        return {
+           ...state,
+            token:value,
+        }
+    },
     setCurrentPlayMusicId(state,value){
         return {
             ...state,

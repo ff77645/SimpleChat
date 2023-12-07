@@ -2,7 +2,7 @@ import { Modal,ModalContent,ModalHeader,ModalBody,ModalFooter,Button,Input} from
 import { useContext, useEffect, useRef, useState } from "react";
 import {GlobalContext} from '../../contexts/global'
 import toast from "react-hot-toast";
-import request from "../../utils/request";
+import {createRoom} from '../../api'
 
 export default function SettingUserName(){
     const [inputValue,setInputValue] = useState('')
@@ -15,8 +15,9 @@ export default function SettingUserName(){
 
     const handleConfirm = async ()=>{
         if(!inputValue) return toast.error('请输入房间名称')
-        const res = await request.post('/room/create',{roomName:inputValue})
+        const res = await createRoom({roomName:inputValue})
         console.log({res});
+        toast.success('创建房间成功')
         dispatch('setRoomData',res.room)
         onClose()
     }
