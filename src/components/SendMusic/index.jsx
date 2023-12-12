@@ -12,7 +12,7 @@ const request = async path =>{
     // https://music.summer9.cn
     // https://netease-cloud-music-api-ecru-gamma-37.vercel.app
     // http://localhost:4000
-    const res = await axios.get(`https://netease-cloud-music-api-ecru-gamma-37.vercel.app${path}`)
+    const res = await axios.get(`https://music.summer9.cn${path}`)
     return res.data
 }
 

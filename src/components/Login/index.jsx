@@ -1,7 +1,6 @@
 import { Modal,ModalContent,ModalHeader,ModalBody,ModalFooter,Button,Input} from "@nextui-org/react";
 import { useContext, useEffect, useRef, useState } from "react";
 import {GlobalContext} from '../../contexts/global'
-import request from '../../utils/request'
 import toast from 'react-hot-toast'
 import {ASSET_PREFIX} from '../../config/config'
 import { login } from "../../api";
@@ -9,8 +8,8 @@ import { login } from "../../api";
 
 export default function Login(){
     const [_,dispatch] = useContext(GlobalContext)
-    const [email,setEmail] = useState('tom2@qq.com')
-    const [password,setPassword] = useState('654321')
+    const [email,setEmail] = useState('')
+    const [password,setPassword] = useState('')
 
     const onClose = ()=>{
         dispatch('setModalName','')

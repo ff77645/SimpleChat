@@ -27,7 +27,7 @@ const modals = {
 
 
 const initSocket = ()=>{
-  const socket = io('http://localhost:3000/chat')
+  const socket = io('https://summer9.cn/chat')
   socket.on('connect',()=>{
     console.log('socket connect,',socket.id);
   })
