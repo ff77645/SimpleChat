@@ -9,4 +9,5 @@ export const actionType = {
     JOIN_ROOM:'JOIN_ROOM',
     Login:'LOGIN',
     SETTING_USER_DATA:'SETTING_USER_DATA',
+    MUSIC_LIST:"MUSIC_LIST",
 }

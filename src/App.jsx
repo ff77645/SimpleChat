@@ -18,12 +18,14 @@ import {getUserInfo} from './api/index'
 import toast from 'react-hot-toast'
 import Notice from "./helper/Notice";
 
+import MusicList from "./components/MusicList";
 const modals = {
   [actionType.SETTING_USER_DATA]:<SettingUserData/>,
   [actionType.SEND_MUSIC]:<SendMusic/>,
   [actionType.CREATE_ROOM]:<CreateRoom/>,
   [actionType.JOIN_ROOM]:<JoinRoom/>,
-  [actionType.Login]:<Login/>
+  [actionType.Login]:<Login/>,
+  [actionType.MUSIC_LIST]:<MusicList/>
 }
 
 

@@ -69,6 +69,7 @@ function ChatInput({onSend},ref){
                     onChange={handleInputChange}
                     onKeyDown={handleKeyDown}
                     type="text"
+                    placeholder='输入 > 进入命令行模式'
                     className="w-full h-full outline-none resize-none box-border px-2 break-words"
                 />
                 {

@@ -41,6 +41,12 @@ export const commands = [
         rep_en:'Room: Join Room',
         action:actionType.JOIN_ROOM,
     },
+    {
+        keywords:'room 房间 music 音乐 列表',
+        rep:'房间: 房间音乐列表',
+        rep_en:'Room:  Room Music List',
+        action:actionType.MUSIC_LIST,
+    },
     // 账号
     {
         keywords:'login 登录 account 账号 user 用户',
@@ -55,3 +61,4 @@ export const commands = [
         action:actionType.SETTING_USER_DATA,
     },
 ]
+// MUSIC_LIST

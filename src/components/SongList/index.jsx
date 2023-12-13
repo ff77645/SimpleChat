@@ -60,7 +60,7 @@ export default function SongList(){
 
     return (
         <div 
-            className="fixed overflow-auto top-[60px] right-[150px] w-80 z-10 rounded-md"
+            className="fixed overflow-auto top-[60px] right-[150px] w-80 z-100 rounded-md"
             style={{
                 maxHeight:'calc(100vh - 120px)'
             }}
