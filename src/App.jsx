@@ -16,6 +16,7 @@ import Music from "./plugin/music";
 import ChatHeader from "./components/ChatHeader";
 import {getUserInfo} from './api/index'
 import toast from 'react-hot-toast'
+import Notice from "./helper/Notice";
 
 const modals = {
   [actionType.SETTING_USER_DATA]:<SettingUserData/>,
@@ -135,20 +136,29 @@ function App() {
     },100)
   }, [msgList]);
 
+  const onNotice = ()=>{
+    new Notice().show('测试','测试').then(res=>{
+      console.log({res});
+    })
+  }
+
   return (
-    <div className={`${state.theme} h-screen bg-gray-200`}>
-      <ChatHeader/>
-      <ChatContext.Provider value={sendMsg}>
-        <div className="relative" style={{height:'calc(100vh - 100px)'}}>
-          <div ref={scrollRef} className="overflow-y-auto h-full">
-              {msgList.map((data, index) => (
-                <Message data={data} align={data.userId === state.userData.id ? 'right' : 'left'} key={index}></Message>
-              ))}
+    <div className={`${state.theme}`}>
+      {modals[state.modalName]}
+      <div className="h-screen bg-gray-200 dark:bg-[#747d8c] flex flex-col flex-nowrap overflow-hidden">
+        <ChatHeader/>
+        <ChatContext.Provider value={sendMsg}>
+          <div className="relative flex-1 overflow-auto">
+            <div onClick={onNotice}>test</div>
+            <div ref={scrollRef} className="overflow-y-auto h-full">
+                {msgList.map((data, index) => (
+                  <Message data={data} align={data.userId === state.userData.id ? 'right' : 'left'} key={index}></Message>
+                ))}
+            </div>
           </div>
-        </div>
-        {modals[state.modalName]}
-        <ChatInput onSend={sendMsg}></ChatInput>
-      </ChatContext.Provider>
+          <ChatInput onSend={sendMsg}></ChatInput>
+        </ChatContext.Provider>
+      </div>
     </div>
   );
 }

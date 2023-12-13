@@ -16,7 +16,7 @@ export default function ChatHeader(){
 
     return (
         <>
-            <div className="h-[50px] bg-white dark:bg-black flex flex-row items-center justify-between px-4">
+            <div className="h-[50px] bg-white flex-none dark:bg-[#2f3542] dark:text-white flex flex-row items-center justify-between px-4">
                 <div>房号:{state.roomData.roomNum}</div>
                 <div className="flex flex-row gap-4 items-center">
                     <h2 

@@ -11,8 +11,9 @@
     "publish": "node ./scripts/publish.js"
   },
   "dependencies": {
-    "@nextui-org/react": "^2.1.12",
+    "@nextui-org/react": "^2.2.9",
     "@tauri-apps/api": "^1.4.0",
+    "ahooks": "^3.7.8",
     "axios": "^1.5.0",
     "dayjs": "^1.11.9",
     "framer-motion": "^10.16.4",
