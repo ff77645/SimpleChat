@@ -17,8 +17,9 @@ import ChatHeader from "./components/ChatHeader";
 import {getUserInfo} from './api/index'
 import toast from 'react-hot-toast'
 import Notice from "./helper/Notice";
-
 import MusicList from "./components/MusicList";
+import {useDocumentVisibility} from 'ahooks'
+
 const modals = {
   [actionType.SETTING_USER_DATA]:<SettingUserData/>,
   [actionType.SEND_MUSIC]:<SendMusic/>,
@@ -39,11 +40,14 @@ const initSocket = ()=>{
 
 const chunkMap = {}
 const musicHandler = new Music()
+const notice = new Notice()
+
 function App() {
   const [msgList, setMsgList] = useState([]);
   const [state,dispatch] = useContext(GlobalContext)
   const scrollRef = useRef(null);
   const socket = useRef()
+  const documentVisibility = useDocumentVisibility()
 
   const receiveImageChunk = msg =>{
     const chunk = msg.value
@@ -109,6 +113,7 @@ function App() {
       if(data.type === 'image_chunk') return receiveImageChunk(data)
       if(data.type === 'music') addSong(data)
       setMsgList(list=>list.concat(data))
+      if(documentVisibility !== 'visible') notice.show('你有新的消息!')
     })
     
     handler.on('connet',()=>{
@@ -138,12 +143,6 @@ function App() {
     },100)
   }, [msgList]);
 
-  const onNotice = ()=>{
-    new Notice().show('测试','测试').then(res=>{
-      console.log({res});
-    })
-  }
-
   return (
     <div className={`${state.theme}`}>
       {modals[state.modalName]}
@@ -151,7 +150,6 @@ function App() {
         <ChatHeader/>
         <ChatContext.Provider value={sendMsg}>
           <div className="relative flex-1 overflow-auto">
-            <div onClick={onNotice}>test</div>
             <div ref={scrollRef} className="overflow-y-auto h-full">
                 {msgList.map((data, index) => (
                   <Message data={data} align={data.userId === state.userData.id ? 'right' : 'left'} key={index}></Message>
