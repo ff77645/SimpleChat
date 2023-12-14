@@ -135,11 +135,11 @@ function App() {
     }
   },[])
 
-  // useEffect(()=>{
-  //   socket.emit('leave-room',state.oldRoomId)
-  //   socket.emit('join-room',state.roomData.roomId)
-  //   setMsgList([])
-  // },[state.roomData])
+  useEffect(()=>{
+    socket.emit('leave-room',state.oldRoomId)
+    socket.emit('join-room',state.roomData.roomId)
+    setMsgList([])
+  },[state.roomData])
   
   // 消息监听滚动
   useEffect(() => {
