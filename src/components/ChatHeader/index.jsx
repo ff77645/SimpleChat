@@ -24,7 +24,7 @@ export default function ChatHeader({userAmount}){
                         className="text-xl font-[500]" 
                     >
                         {state.roomData.roomName}
-                        <span className="text-sm ml-1">( {userAmount/2} 人)</span>
+                        <span className="text-sm ml-1">( {userAmount} 人)</span>
                     </h2>
                 </div>
                 <div onClick={toggleTheme} className="cursor-pointer text-2xl">

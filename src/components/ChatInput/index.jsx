@@ -56,27 +56,29 @@ function ChatInput({onSend},ref){
     };
 
     return (
-        <div className="h-[50px] flex-none relative w-1/2 mx-auto min-w-[500px]">
-            { 
-                isOpenCmd ? <Command ref={CommandRef} onClose={onCommandClose} value={inputValue} /> : 
-                    isOpenEmoji ? <EmojiModal onClose={()=>setIsOpenEmoji(false)} onConfirm={emojiConfirm}/> : ''
-            }
-            <div className='h-full flex flex-row flex-nowrap items-center rounded-lg overflow-hidden bg-white'>
-                <input
-                    ref={inputRef}
-                    autoFocus
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    onKeyDown={handleKeyDown}
-                    type="text"
-                    placeholder='输入 > 进入命令行模式'
-                    className="w-full h-full outline-none resize-none box-border px-2 break-words"
-                />
-                {
-                    isOpenCmd || <div onClick={()=>setIsOpenEmoji(!isOpenEmoji)} className="p-3 cursor-pointer bg-slate-200 rounded-full mr-4 text-lg">
-                            {isOpenEmoji ? <BsEmojiHeartEyes className='text-red-500' /> : <BsEmojiSmile className='text-gray-600' />}
-                        </div>
+        <div className='pb-2'>
+            <div className="h-[50px] flex-none relative w-1/2 mx-auto min-w-[500px]">
+                { 
+                    isOpenCmd ? <Command ref={CommandRef} onClose={onCommandClose} value={inputValue} /> : 
+                        isOpenEmoji ? <EmojiModal onClose={()=>setIsOpenEmoji(false)} onConfirm={emojiConfirm}/> : ''
                 }
+                <div className='h-full flex flex-row flex-nowrap items-center rounded-lg overflow-hidden bg-white dark:bg-[#2f3542]'>
+                    <input
+                        ref={inputRef}
+                        autoFocus
+                        value={inputValue}
+                        onChange={handleInputChange}
+                        onKeyDown={handleKeyDown}
+                        type="text"
+                        placeholder='输入 > 进入命令行模式'
+                        className="w-full h-full outline-none resize-none box-border px-2 break-words dark:bg-[#2f3542] dark:text-white"
+                    />
+                    {
+                        isOpenCmd || <div onClick={()=>setIsOpenEmoji(!isOpenEmoji)} className="p-3 cursor-pointer bg-slate-200 rounded-full mx-2 text-lg">
+                                {isOpenEmoji ? <BsEmojiHeartEyes className='text-red-500' /> : <BsEmojiSmile className='text-gray-600' />}
+                            </div>
+                    }
+                </div>
             </div>
         </div>
     )
