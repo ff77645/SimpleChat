@@ -3,10 +3,11 @@ import { useContext, useState } from "react"
 import { GlobalContext } from "../../contexts/global"
 import Music from "../../plugin/music"
 import {PiPlaylist} from 'react-icons/pi'
+import { CiDark,CiLight  } from "react-icons/ci"
 import SongList from "../SongList"
 
 
-export default function ChatHeader(){
+export default function ChatHeader({userAmount}){
     const [state,dispatch] = useContext(GlobalContext)
     const musicHandler = Music.getInstance()
     const [showSongList,setShowSongList] = useState(false)
@@ -23,10 +24,12 @@ export default function ChatHeader(){
                         className="text-xl font-[500]" 
                     >
                         {state.roomData.roomName}
+                        <span className="text-sm ml-1">( {userAmount/2} 人)</span>
                     </h2>
-                    {/* <PiPlaylist onClick={()=>setShowSongList(!showSongList)} size={18}/> */}
                 </div>
-                <div onClick={toggleTheme} className="cursor-pointer">?</div>
+                <div onClick={toggleTheme} className="cursor-pointer text-2xl">
+                    {state.theme === 'dark' ? <CiDark/> : <CiLight />}
+                </div>
             </div>
             {showSongList && <SongList/>}
         </>

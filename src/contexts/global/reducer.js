@@ -13,7 +13,7 @@ export const initialState = {
     oldRoomId:'',
     currentPlayMusicId:'',
     token,
-    theme:'',
+    theme:'dark',
 }
 
 

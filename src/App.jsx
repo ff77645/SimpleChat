@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState,useContext } from "react";
+import { useEffect, useRef, useState,useContext, useCallback } from "react";
 import Message from "./components/Message";
 import {actionType} from './components/Command/type'
-// import SettingUserName from "./components/SettingUserName";
 import {GlobalContext} from './contexts/global'
 import ChatInput from './components/ChatInput'
 import {ChatContext} from './contexts/chat'
@@ -10,7 +9,6 @@ import SendMusic from "./components/SendMusic";
 import CreateRoom from './components/CreateRoom'
 import JoinRoom from './components/JoinRoom'
 import Login from './components/Login'
-import {io} from 'socket.io-client'
 import {mergeChunksForArrayBuffer} from './utils'
 import Music from "./plugin/music";
 import ChatHeader from "./components/ChatHeader";
@@ -19,6 +17,8 @@ import toast from 'react-hot-toast'
 import Notice from "./helper/Notice";
 import MusicList from "./components/MusicList";
 import {useDocumentVisibility} from 'ahooks'
+import { useSocketIo } from "./hooks";
+import { BASE_URL } from "./config/config";
 
 const modals = {
   [actionType.SETTING_USER_DATA]:<SettingUserData/>,
@@ -29,15 +29,6 @@ const modals = {
   [actionType.MUSIC_LIST]:<MusicList/>
 }
 
-
-const initSocket = ()=>{
-  const socket = io('https://summer9.cn/chat')
-  socket.on('connect',()=>{
-    console.log('socket connect,',socket.id);
-  })
-  return socket
-}
-
 const chunkMap = {}
 const musicHandler = new Music()
 const notice = new Notice()
@@ -46,9 +37,11 @@ function App() {
   const [msgList, setMsgList] = useState([]);
   const [state,dispatch] = useContext(GlobalContext)
   const scrollRef = useRef(null);
-  const socket = useRef()
+  const {socket} = useSocketIo(BASE_URL + '/chat')
   const documentVisibility = useDocumentVisibility()
+  const [userAmount,setUserAmount] = useState(0)
 
+  // 接受图片chunk
   const receiveImageChunk = msg =>{
     const chunk = msg.value
     console.log('接收',chunk);
@@ -66,6 +59,7 @@ function App() {
     }
   }
 
+  // 添加音乐
   const addSong = msg =>{
     musicHandler.addSong({
       ...msg.value,
@@ -76,6 +70,7 @@ function App() {
     })
   }
 
+  // 发送消息
   const sendMsg = msg =>{
     // if(state.userData.id === undefined) return dispatch('setModalName',actionType.Login)
     const value = {
@@ -88,7 +83,7 @@ function App() {
     }
     setMsgList(list=>list.concat(value))
     if(msg.noSend) return 
-    socket.current.emit('message',{
+    socket.emit('message',{
       roomid:state.roomData.roomId,
       value,
     })
@@ -97,41 +92,54 @@ function App() {
     }
   }
 
-  useEffect(()=>{
-    const handler = initSocket()
-    state.token && getUserInfo({
-      token:state.token,
-    }).then(res=>{
-      console.log({res});
-      if(!res.success) return
-      dispatch('setUserData',res.data)
-      dispatch('setToken',res.token)
-      localStorage.setItem('token',res.token)
-      toast.success('登录成功')
-    })
-    handler.on('message',data=>{
-      if(data.type === 'image_chunk') return receiveImageChunk(data)
-      if(data.type === 'music') addSong(data)
-      setMsgList(list=>list.concat(data))
-      if(documentVisibility !== 'visible') notice.show('你有新的消息!')
-    })
-    
-    handler.on('connet',()=>{
-      // 初始化进入公共频道
-      socket.emit('join-room',state.roomData.roomId)
-    })
+  const initUserData = async ()=>{
+    const res =  await getUserInfo({ token:state.token })
+    console.log({res});
+    if(!res.success) return
+    dispatch('setUserData',res.data)
+    dispatch('setToken',res.token)
+    localStorage.setItem('token',res.token)
+    toast.success('登录成功')
+  }
 
-    socket.current = handler
-    return ()=>{
-      socket.current.off()
-    }
+  
+  const receiveData = useCallback(data =>{
+    console.log({data});
+    if(data.type === 'image_chunk') return receiveImageChunk(data)
+    if(data.type ==='music') addSong(data)
+    setMsgList(list=>list.concat(data))
+    if(documentVisibility!== 'visible') notice.show('你有新的消息!')
   },[])
 
   useEffect(()=>{
-    socket.current.emit('leave-room',state.oldRoomId)
-    socket.current.emit('join-room',state.roomData.roomId)
-    setMsgList([])
-  },[state.roomData])
+    // console.log('useEffect',socket.connected);
+    state.token && initUserData()
+    socket.on('message',data=>{
+      console.log('msg 1',data);
+      receiveData(data)
+    })
+
+    socket.on('join-room',data=>{
+      console.log('join-room',data);
+      setUserAmount(data.amount)
+    })
+
+    socket.on('leave-room',data=>{
+      console.log('leave-room',data);
+      setUserAmount(data.amount)
+    })
+    // 初始化进入公共频道
+    socket.on('connet',()=>socket.emit('join-room',state.roomData.roomId))
+    return ()=>{
+      socket.off()
+    }
+  },[])
+
+  // useEffect(()=>{
+  //   socket.emit('leave-room',state.oldRoomId)
+  //   socket.emit('join-room',state.roomData.roomId)
+  //   setMsgList([])
+  // },[state.roomData])
   
   // 消息监听滚动
   useEffect(() => {
@@ -147,7 +155,7 @@ function App() {
     <div className={`${state.theme}`}>
       {modals[state.modalName]}
       <div className="h-screen bg-gray-200 dark:bg-[#747d8c] flex flex-col flex-nowrap overflow-hidden">
-        <ChatHeader/>
+        <ChatHeader userAmount={userAmount}/>
         <ChatContext.Provider value={sendMsg}>
           <div className="relative flex-1 overflow-auto">
             <div ref={scrollRef} className="overflow-y-auto h-full">

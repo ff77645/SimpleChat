@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "tauri": "tauri",
-    "publish": "node ./scripts/publish.js"
+    "publish": "zx ./scripts/publish.mjs"
   },
   "dependencies": {
     "@nextui-org/react": "^2.2.9",
@@ -31,6 +31,7 @@
     "@tauri-apps/cli": "^1.4.0",
     "@vitejs/plugin-react": "^4.0.3",
     "autoprefixer": "^10.4.15",
+    "dotenv": "^16.3.1",
     "form-data": "^4.0.0",
     "postcss": "^8.4.29",
     "sass": "^1.66.1",

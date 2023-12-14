@@ -7,13 +7,14 @@ export default class Notice{
     Notice.instance = this
   }
 
-  requestPermission(){
-    return Notification.requestPermission().then(res=>{
-      this.permission = res
-    })
+  async requestPermission(){
+    const res = await Notification.requestPermission()
+    this.permission = res
+    if(res == 'granted') return Promise.resolve(res)
+    return Promise.reject(res)
   }
 
-  async show(title,body,icon){
+  async show(title,body,icon){ 
     if(this.permission == 'granted'){
       return new Notification(title,{
         body,
