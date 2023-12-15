@@ -12,11 +12,13 @@ export function useSocketIo(url, options) {
   const socketRef = useRef(null)
   const [readyState,setReadyState] = useState(ReadyState.Connecting)
   if (!socketRef.current) {
-    console.log('useSocketIo',url);
     const socket = io(url, options)
     socketRef.current = socket
-    socketRef.current.on('connect', () => {
+    socket.on('connect', () => {
       setReadyState(ReadyState.Open)
+    })
+    socket.on('disconnect', () => {
+      setReadyState(ReadyState.Closed)
     })
   }
   return {

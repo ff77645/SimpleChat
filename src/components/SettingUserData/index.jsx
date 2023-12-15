@@ -62,7 +62,7 @@ export default function SettingUserData() {
     if(userAvatar) {
       const name = `user-image/user_head_${state.userData.id}_${dayjs().format('YYMMDDHHmmss')}`
       const res = await uploadFile(userHead,name)
-      data.avatar = ASSET_PREFIX + res.key
+      data.avatar = res.key
     }
     const res = await updateUserData(data)
     toast.dismiss(tid)

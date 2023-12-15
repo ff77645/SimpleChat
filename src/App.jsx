@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState,useContext, useCallback } from "react";
-import Message from "./components/Message";
 import {actionType} from './components/Command/type'
 import {GlobalContext} from './contexts/global'
 import ChatInput from './components/ChatInput'
@@ -19,6 +18,7 @@ import MusicList from "./components/MusicList";
 import {useDocumentVisibility} from 'ahooks'
 import { useSocketIo } from "./hooks";
 import { BASE_URL } from "./config/config";
+import ChatBody from "./components/ChatBody";
 
 const modals = {
   [actionType.SETTING_USER_DATA]:<SettingUserData/>,
@@ -141,15 +141,6 @@ function App() {
     setMsgList([])
   },[state.roomData])
   
-  // 消息监听滚动
-  useEffect(() => {
-    setTimeout(()=>{
-      scrollRef.current.scrollTo({
-        top: scrollRef.current.scrollHeight,
-        behavior: "smooth",
-      });
-    },100)
-  }, [msgList]);
 
   return (
     <div className={`${state.theme}`}>
@@ -157,13 +148,7 @@ function App() {
       <div className="h-screen bg-gray-200 dark:bg-[#747d8c] flex flex-col flex-nowrap overflow-hidden">
         <ChatHeader userAmount={userAmount}/>
         <ChatContext.Provider value={sendMsg}>
-          <div className="relative flex-1 overflow-auto">
-            <div ref={scrollRef} className="overflow-y-auto h-full">
-                {msgList.map((data, index) => (
-                  <Message data={data} align={data.userId === state.userData.id ? 'right' : 'left'} key={index}></Message>
-                ))}
-            </div>
-          </div>
+          <ChatBody msgList={msgList} userData={state.userData}></ChatBody>
           <ChatInput onSend={sendMsg}></ChatInput>
         </ChatContext.Provider>
       </div>

@@ -2,12 +2,14 @@ import { useState,useEffect,useCallback, useRef, useContext } from 'react'
 import {Image,Avatar,Skeleton} from '@nextui-org/react'
 import {fileToBase64,getFileMd5} from '../../utils'
 import { ChatContext } from '../../contexts/chat'
+import PreviewImage from '../PreviewImage'
 
 
 export default function ImageMsg({data,align}){
     const sendMsg = useContext(ChatContext)
     const [file,setFile] = useState()
     const isLoading = useRef(true)
+    const [preview,setPreview] = useState(false)
     
     const sendImage = useCallback(async (file)=>{
         const hash = await getFileMd5(file)
@@ -26,7 +28,6 @@ export default function ImageMsg({data,align}){
             })
         }
         chunks.forEach(value=>{
-            console.log('发送',value);
             sendMsg({
                 type:'image_chunk',
                 value
@@ -41,6 +42,8 @@ export default function ImageMsg({data,align}){
             sendImage(data.value)
         }
     },[])
+
+
     return (
         <div className={`mx-3 mt-2 flex ${align === 'right' ? 'flex-row-reverse' : 'flex-row'} flex-nowrap gap-2 p-2`}>
             <Avatar className="flex-none" size="lg" src={data.avatar} name={data.nickname}></Avatar>
@@ -51,14 +54,15 @@ export default function ImageMsg({data,align}){
                         file ? <Image
                             width={300}
                             height={200}
-                            isZoomed
                             loading="lazy"
                             src={file}
+                            onClick={()=>setPreview(true)}
                             alt="NextUI Image with fallback"
                         /> : <Skeleton className="rounded-lg">
                             <div className="h-[200px] w-[300px] rounded-lg bg-default-300"></div>
                         </Skeleton>
                     }
+                    {preview && <PreviewImage images={[file]} onClose={()=>setPreview(false)} />}
                 </div>
             </div>
         </div>
