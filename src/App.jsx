@@ -115,7 +115,6 @@ function App() {
     // console.log('useEffect',socket.connected);
     state.token && initUserData()
     socket.on('message',data=>{
-      console.log('msg 1',data);
       receiveData(data)
     })
 
@@ -143,16 +142,16 @@ function App() {
   
 
   return (
-    <div className={`${state.theme}`}>
-      {modals[state.modalName]}
-      <div className="h-screen bg-gray-200 dark:bg-[#747d8c] flex flex-col flex-nowrap overflow-hidden">
-        <ChatHeader userAmount={userAmount}/>
-        <ChatContext.Provider value={sendMsg}>
-          <ChatBody msgList={msgList} userData={state.userData}></ChatBody>
-          <ChatInput onSend={sendMsg}></ChatInput>
-        </ChatContext.Provider>
+    <ChatContext.Provider value={sendMsg}>
+      <div className={`${state.theme}`}>
+        {modals[state.modalName]}
+        <div className="h-screen bg-gray-200 dark:bg-[#747d8c] flex flex-col flex-nowrap overflow-hidden">
+          <ChatHeader userAmount={userAmount}/>
+            <ChatBody msgList={msgList} userData={state.userData}></ChatBody>
+            <ChatInput onSend={sendMsg}></ChatInput>
+        </div>
       </div>
-    </div>
+    </ChatContext.Provider>
   );
 }
 
